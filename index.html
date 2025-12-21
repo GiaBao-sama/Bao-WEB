@@ -1,0 +1,983 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Website title -->
+    <title>XeDap.vn - Web bán xe đạp uy tín số 1 Việt Nam.</title>
+
+    <!-- Google Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&family=Sedgwick+Ave&family=Ubuntu:wght@700&display=swap"
+        rel="stylesheet">
+
+    <!-- My stylesheet -->
+    <link rel="stylesheet" href="styles.css">
+
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Font Awesome (icons) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+</head>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+</script>
+
+<body>
+<script>
+(function(){if(!window.chatbase||window.chatbase("getState")!=="initialized"){window.chatbase=(...arguments)=>{if(!window.chatbase.q){window.chatbase.q=[]}window.chatbase.q.push(arguments)};window.chatbase=new Proxy(window.chatbase,{get(target,prop){if(prop==="q"){return target.q}return(...args)=>target(prop,...args)}})}const onLoad=function(){const script=document.createElement("script");script.src="https://www.chatbase.co/embed.min.js";script.id="C7h43oYeGdERYj4toFTRS";script.domain="www.chatbase.co";document.body.appendChild(script)};if(document.readyState==="complete"){onLoad()}else{window.addEventListener("load",onLoad)}})();
+</script>
+    <!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+
+<!-- START: Updated Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary sticky-top py-2" id="mainNavbar">
+  <div class="container">
+    <!-- Brand / Logo -->
+    <a class="navbar-brand d-flex align-items-center gap-2" href="index.html">
+      <i class="fa-solid fa-bicycle me-2 text-warning"></i> XeDap.vn
+
+    </a>
+
+    <!-- Toggler -->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTop"
+      aria-controls="navbarTop" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span> 
+    </button>
+
+    <!-- Fix modal backdrop issue -->
+    <script>
+      document.addEventListener('hidden.bs.modal', function (e) {
+        if (document.querySelectorAll('.modal.show').length === 0) {
+          document.body.classList.remove('modal-open');
+          document.body.style.overflow = '';
+          const backdrop = document.querySelector('.modal-backdrop');
+          if (backdrop) backdrop.remove();
+        }
+      });
+    </script>
+    <div class="collapse navbar-collapse" id="navbarTop">
+      <!-- Left links -->
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0 align-items-lg-center">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="index.html">Trang chủ</a>
+        </li>
+        <li class="nav-item"><a class="nav-link" href="#xe-dap-tre-em">Xe đạp trẻ em</a></li>
+        <li class="nav-item"><a class="nav-link" href="#xe-dap-dia-hinh">Xe đạp địa hình</a></li>
+        <li class="nav-item"><a class="nav-link" href="#xe-dap-duong-pho">Xe đạp đường phố</a></li>
+        <li class="nav-item"><a class="nav-link" href="#xe-dap-nu">Xe đạp nữ</a></li>
+        <li class="nav-item"><a class="nav-link" href="#phu-kien">Phụ kiện</a></li>
+        <li class="nav-item"><a class="nav-link" href="#lien-he">Liên hệ</a></li>
+      </ul>
+
+      <!-- Search (hidden on xs) -->
+      <form class="d-none d-lg-flex mx-3" role="search" onsubmit="event.preventDefault(); doSearch();">
+        <input id="navSearch" class="form-control form-control-sm" type="search" placeholder="Tìm kiếm xe, phụ kiện..." aria-label="Search">
+        <button class="btn btn-sm btn-outline-light ms-2" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+      </form>
+
+      <!-- Right icons -->
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-center">
+        <!-- Search icon for small screens -->
+        <li class="nav-item d-lg-none me-2">
+          <a class="nav-link" href="#" id="mobileSearchToggle"><i class="fa-solid fa-magnifying-glass"></i></a>
+        </li>
+
+        <li class="nav-item dropdown me-2">
+          <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown"
+            aria-expanded="false">
+            <i class="fa-solid fa-user"></i> Tài khoản
+          </a>
+          <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+            <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#loginModal">Đăng nhập</a></li>
+            <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#registerModal">Đăng ký</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="#">Đơn hàng</a></li>
+          </ul>
+        </li>
+
+        <!-- Cart -->
+        <li class="nav-item me-2">
+          <a class="nav-link position-relative" href="#" id="cartBtn" aria-label="Giỏ hàng">
+            <i class="fa-solid fa-cart-shopping fa-lg"></i>
+            <span id="cartBadge" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">0</span>
+          </a>
+        </li>
+
+      </ul>
+    </div>
+  </div>
+
+  <!-- Small-screen search input (hidden by default) -->
+  <div class="container d-lg-none" id="mobileSearchRow" style="display:none;">
+    <div class="py-2">
+      <form class="d-flex" role="search" onsubmit="event.preventDefault(); doSearch();">
+        <input id="mobileNavSearch" class="form-control form-control-sm" type="search" placeholder="Tìm kiếm..." aria-label="Search mobile">
+        <button class="btn btn-sm btn-outline-light ms-2" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+      </form>
+    </div>
+  </div>
+</nav>
+
+<!-- MODAL ĐĂNG NHẬP -->
+<div class="modal fade" id="loginModal" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered modal-md">
+    <div class="modal-content rounded-4 shadow-lg bg-light">
+
+      <div class="modal-header border-0">
+        <h3 class="modal-title fw-bold text-dark">Đăng nhập</h3>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+
+      <div class="modal-body px-4">
+        <form>
+          <div class="mb-3">
+            <label class="form-label fw-semibold text-dark">Email</label>
+            <input type="email" class="form-control form-control-lg" placeholder="Nhập email">
+          </div>
+
+          <div class="mb-4">
+            <label class="form-label fw-semibold text-dark">Mật khẩu</label>
+            <input type="password" class="form-control form-control-lg" placeholder="Nhập mật khẩu">
+          </div>
+
+          <button type="submit" class="btn btn-primary btn-lg w-100 rounded-3 mb-2">
+            Đăng nhập
+          </button>
+        </form>
+
+        <div class="text-center mt-3">
+          <span class="text-dark">Chưa có tài khoản?</span>
+          <a href="#" class="fw-bold" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#registerModal">
+            Đăng ký ngay
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- MODAL ĐĂNG KÝ -->
+<div class="modal fade" id="registerModal" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered modal-md">
+    <div class="modal-content rounded-4 shadow-lg bg-light">
+
+      <div class="modal-header border-0">
+        <h3 class="modal-title fw-bold text-dark">Đăng ký</h3>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+
+      <div class="modal-body px-4">
+        <form>
+          <div class="mb-3">
+            <label class="form-label fw-semibold text-dark">Email</label>
+            <input type="email" class="form-control form-control-lg" placeholder="Nhập email">
+          </div>
+          <div class="mb-3">
+            <label class="form-label fw-semibold text-dark">Username</label>
+            <input type="username" class="form-control form-control-lg" placeholder="Nhập tên người dùng">
+          </div>
+
+          <div class="mb-4">
+            <label class="form-label fw-semibold text-dark">Mật khẩu</label>
+            <input type="password" class="form-control form-control-lg" placeholder="Nhập mật khẩu">
+          </div>
+
+          <button type="submit" class="btn btn-success btn-lg w-100 rounded-3 mb-2">
+            Đăng ký
+          </button>
+        </form>
+
+        <div class="text-center mt-3">
+          <span class="text-dark">Đã có tài khoản?</span>
+          <a href="#" data-bs-target="#loginModal" data-bs-toggle="modal" class="fw-bold">
+            Đăng nhập
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+    <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active container-fluid">
+                <img class="testimonial-image"
+                    src="https://api.xedap.vn/banners/CTKM%20T10/resize-website-banner-home.jpg">
+            </div>
+            <div class="carousel-item container-fluid">
+                <img class="testimonial-image"
+                    src="https://api.xedap.vn/banners/CTKM%20T10/resize-ctkm-thang-10-banner-web.jpg">
+            </div>
+            <div class="carousel-item container-fluid">
+                <img class="testimonial-image"
+                    src="https://api.xedap.vn/banners/CTKM%20T09/banner-cover-rincon-banner.jpg">
+            </div>
+
+        </div>
+
+
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+        crossorigin="anonymous"></script>
+    <!-- Banner -->
+    <div class="hot-vai">
+        <section class="text-center py-5">
+            <h1 class="fw-bold display-5">SIÊU SALE CUỐI NĂM</h1>
+            <p class="lead">DEAL ĐỈNH QUÀ XỊN</p>
+        </section>
+        <!-- Deal hot -->
+        <div class="container my-4">
+            <div class="text-center mb-3">
+                <button class="btn btn-danger btn-lg fw-bold px-5 mt-auto">DEAL HOT HÔM NAY</button>
+            </div>
+            <div id="productCarouselHot" class="carousel slide mb-5" data-bs-ride="carousel">
+                <div class="carousel-inner">
+
+                    <div class="carousel-item active">
+                        <div class="row text-center">
+                            <!--Col<576 Col-sm>=576 col-md>=768 lg>-992-->
+                            <div class="col-12 col-sm-6 col-md-4 col-lg-2">
+                                <div class="card h-100">
+                                    <a href="sp1.html">
+                                        <img src="https://api.xedap.vn/wp-content/uploads/2021/12/rincon-2-27-5-black-850-f.jpg"
+                                            class="card-img-top" alt="Xe 1">
+                                    </a>
+                                    <div class="card-body">
+                                        <h6 class="card-title">Xe Đạp Địa Hình Rincon 2- 29- Phanh Đĩa ...</h6>
+                                        <p class="fw-bold text-danger">7.190.000 VND GIẢM TỚI 35% </p>
+                                        <p><del>10.690.000 VND</del></p>
+                                        <button class="btn btn-danger btn-lg fw-bold fs-6 ">DEAL GIOI HAN</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-12 col-sm-6 col-md-4 col-lg-2">
+                                <div class="card h-100">
+                                    <img src="https://api.xedap.vn/wp-content/uploads/2023/08/2024_Talon2_DriedHerb.jpg"
+                                        class="card-img-top" alt="Xe 2">
+                                    <div class="card-body">
+                                        <h6 class="card-title">Xe Đạp Địa Hình MTB GIANT Talon 2-Phanh...</h6>
+                                        <p class="fw-bold text-danger">11.490.000 VND GIẢM TỚI 35% </p>
+                                        <p><del>13.290.000 VND</del></p>
+                                        <button class="btn btn-danger btn-lg fw-bold fs-6 ">DEAL GIOI HAN</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-12 col-sm-6 col-md-4 col-lg-2">
+                                <div class="card h-100">
+                                    <img src="https://api.xedap.vn/wp-content/uploads/2021/10/atx-620-red-850.jpg"
+                                        class="card-img-top" alt="Xe 3">
+                                    <div class="card-body">
+                                        <h6 class="card-title">Xe Đạp Địa Hình MTB GIANT ATX 620 - Phanh...</h6>
+                                        <p class="fw-bold text-danger">6.990.000 VND </p>
+                                        <p><del>8.990.000 VND</del></p>
+                                        <button class="btn btn-danger btn-lg fw-bold fs-6 ">DEAL GIOI HAN</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-12 col-sm-6 col-md-4 col-lg-2">
+                                <div class="card h-100">
+                                    <img src="https://api.xedap.vn/wp-content/uploads/2024/01/Free22_WhiteGray.jpg"
+                                        class="card-img-top" alt="Xe 4">
+                                    <div class="card-body">
+                                        <h6 class="card-title">Xe Đạp Đường phố Touring TRINX Free 2.2- Phanh...
+                                        </h6>
+                                        <p class="fw-bold text-danger">6.490.000 VND </p>
+                                        <p><del>7.490.000 VND</del></p>
+                                        <button class="btn btn-danger btn-lg fw-bold fs-6 ">DEAL GIOI HAN</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-sm-6 col-md-4 col-lg-2">
+                                <div class="card h-100">
+                                    <img src="https://api.xedap.vn/products/RAPTOR/evo-orange.jpg" class="card-img-top"
+                                        alt="Xe 4">
+                                    <div class="card-body">
+                                        <h6 class="card-title">Xe Đạp Địa Hình Raptor MAVO-2- Phanh đĩa....</h6>
+                                        <p class="fw-bold text-danger">9.890.000 VND </p>
+                                        <p><del>12.490.000 VND</del></p>
+                                        <button class="btn btn-danger btn-lg fw-bold fs-6 ">DEAL GIOI HAN</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-sm-6 col-md-4 col-lg-2">
+                                <div class="card h-100">
+                                    <img src="https://api.xedap.vn/products/RAPTOR/marlin-3-blackgreen.jpg"
+                                        class="card-img-top" alt="Xe 4">
+                                    <div class="card-body">
+                                        <h6 class="card-title">Xe Đạp Địa Hình Raptor Marlin-2 - Phanh...</h6>
+                                        <p class="fw-bold text-danger">10.490.000 VND </p>
+                                        <p><del>12.490.000 VND</del></p>
+                                        <button class="btn btn-danger btn-lg fw-bold fs-6 ">DEAL GIOI HAN</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+        <!--Ban chay-->
+    <div class="container my-4">
+        <div class="hot-vai">
+            <section class="text-center py-5">
+                <h1 class="fw-bold display-5">TOP SẢN PHẨM BÁN CHẠY</h1>
+                <p class="lead">MIỄN PHÍ VẬN CHUYỂN TOÀN QUỐC</p>
+            </section>
+        </div>
+        <!-- Carousel sản phẩm -->
+        <div id="productCarouselSell" class="carousel slide mb-5" data-bs-ride="carousel">
+        <div class="carousel-inner">
+
+            <div class="carousel-item active">
+                <div class="row text-center">
+                    <div class="col-12 col-sm-6 col-md-4 col-lg-2">
+                        <div class="card h-100">
+                            <a href="sp2.html">
+                                <img src="https://api.xedap.vn/products/RAPTOR/marlin-2-greenblue_2.jpg"
+                                    class="card-img-top" alt="Xe 1">
+                            </a>
+                            <div class="card-body">
+                                <h6 class="card-title">Xe Đạp Đua Địa Hình MTB RAPTOR Marlin 2- Phanh đĩa....</h6>
+                                <p class="fw-bold text-danger">9.890.000 VND</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-12 col-sm-6 col-md-4 col-lg-2">
+                        <div class="card h-100">
+                            <img src="https://api.xedap.vn/products/RAPTOR/evo-orange.jpg" class="card-img-top"
+                                alt="Xe 2">
+                            <div class="card-body">
+                                <h6 class="card-title">Xe Đạp Đua Địa Hình MTB RAPTOR Evo - Phanh đĩa, Bá...</h6>
+                                <p class="fw-bold text-danger">9.790.000 VND</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-12 col-sm-6 col-md-4 col-lg-2">
+                        <div class="card h-100">
+                            <img src="https://api.xedap.vn/wp-content/uploads/2023/07/MaxBike_Mikki12_Blue_0.jpg"
+                                class="card-img-top" alt="Xe 3">
+                            <div class="card-body">
+                                <h6 class="card-title">Xe Đạp Trẻ Em Youth MAX BIKE Mikki 12- Bánh 12 Inches...</h6>
+                                <p class="fw-bold text-danger">1.190.000 VND </p>
+                                <p><del>1.990.000 VND</del></p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-12 col-sm-6 col-md-4 col-lg-2">
+                        <div class="card h-100">
+                            <img src="https://api.xedap.vn/wp-content/uploads/2024/01/Free22_WhiteGray.jpg"
+                                class="card-img-top" alt="Xe 4">
+                            <div class="card-body">
+                                <h6 class="card-title">Xe Đạp Đường phố Touring TRINX Free 2.2- Phanh...
+                                </h6>
+                                <p class="fw-bold text-danger">6.490.000 VND </p>
+                                <p><del>7.490.000 VND</del></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-6 col-md-4 col-lg-2">
+                        <div class="card h-100">
+                            <img src="https://api.xedap.vn/wp-content/uploads/2021/07/VINLAV2-7031-850.jpg"
+                                class="card-img-top" alt="Xe 4">
+                            <div class="card-body">
+                                <h6 class="card-title">Xe Đạp Đua Địa Hình MTB Vinbike Lava 2- Phanh Đĩa,...</h6>
+                                <p class="fw-bold text-danger">4.490.000 VND </p>
+                                <p><del>6.990.000 VND</del></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-6 col-md-4 col-lg-2">
+                        <div class="card h-100">
+                            <img src="https://api.xedap.vn/wp-content/uploads/2023/09/Delta_Black-1.jpg"
+                                class="card-img-top" alt="Xe 4">
+                            <div class="card-body">
+                                <h6 class="card-title">Xe Đạp Đường Phố Touring GTIX Delta - Phanh Địa,...</h6>
+                                <p class="fw-bold text-danger">11.790.000 VND </p>
+                                <p><del>12.490.000 VND</del></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#productCarouselSell" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon"></span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#productCarouselSell" data-bs-slide="next">
+        <span class="carousel-control-next-icon"></span>
+    </button>
+    </div>
+    </div>
+    <!-- XE ĐẠP TRẺ EM -->
+    <div class="container my-4 mb-5" id="xe-dap-tre-em">
+        <div class="row">
+            <p class="fw-bold display-5 mb-4 mt-5">XE ĐẠP TRẺ EM</p>
+
+            <div class="col-md-4">
+                <div class="card h-100 shadow">
+                    <a href="sp3.html">
+                        <img src="https://api.xedap.vn/wp-content/uploads/2023/08/xe-dap-tre-em-youth-max-bike-homepage.png"
+                            class="card-img-top" alt="Xe xịn nhất">
+                    </a>
+                    <div class="card-body">
+                        <h5 class="card-title">Xe Đạp Trẻ Em Youth MAX BIKE Mikki 14 - Bánh 14 Inches</h5>
+                        <p class="fw-bold text-danger text-center">2.190.000 VND</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-8">
+                <div id="carouselTreEm" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="card h-100">
+                                        <img src="https://api.xedap.vn/products/MISAKI/kitty-4-green.jpg"
+                                            class="card-img-top" alt="Xe trẻ em 1">
+                                        <div class="card-body">
+                                            <h6 class="card-title">Xe Đạp Trẻ Em Youth RAPTOR Helen 2 - Bánh 22 Inches
+                                            </h6>
+                                            <p class="fw-bold text-danger text-center">2.690.000 VND</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="card h-100">
+                                        <img src="https://api.xedap.vn/products/RAPTOR/hola-20-black.jpg"
+                                            class="card-img-top" alt="Xe trẻ em 2">
+                                        <div class="card-body">
+                                            <h6 class="card-title">Xe ĐẠp Trẻ Em Youth RAPTOR Hala- 20 - Bánh 20 Inches.
+                                            </h6>
+                                            <p class="fw-bold text-danger text-center">2.090.000 VND</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="card h-100">
+                                        <img src="https://api.xedap.vn/products/MISAKI/kitty-2-pink.jpg"
+                                            class="card-img-top" alt="Xe trẻ em 3">
+                                        <div class="card-body">
+                                            <h6 class="card-title">Xe Đạp Trẻ Em MISAKI Kitty 2 - Bánh 12 Inches.</h6>
+                                            <p class="fw-bold text-danger text-center">1.475.000 VND</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="carousel-item">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="card h-100">
+                                        <img src="https://api.xedap.vn/products/RAPTOR/rock-3-lightgreyred.jpg"
+                                            class="card-img-top" alt="Xe trẻ em 4">
+                                        <div class="card-body">
+                                            <h6 class="card-title">Xe Đạp Trẻ Em RAPTOR Rock 3 - Bánh 22 Inches.</h6>
+                                            <p class="fw-bold text-danger text-center">3.290.000 VND</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="card h-100">
+                                        <img src="https://api.xedap.vn/products/RAPTOR/hola-20-b-black.jpg"
+                                            class="card-img-top" alt="Xe trẻ em 4">
+                                        <div class="card-body">
+                                            <h6 class="card-title">Xe Đạp Trẻ Em RAPTOR Hola 20B - Bánh 20 Inches.</h6>
+                                            <p class="fw-bold text-danger text-center">2.890.000 VND</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="card h-100">
+                                        <img src="https://api.xedap.vn/products/MISAKI/kitty-2-pink.jpg"
+                                            class="card-img-top" alt="Xe trẻ em 4">
+                                        <div class="card-body">
+                                            <h6 class="card-title">Xe Đạp Trẻ Em MISAKI Kitty 2- PINKA.</h6>
+                                            <p class="fw-bold text-danger text-center">1.890.000 VND</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselTreEm"
+                        data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon"></span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselTreEm"
+                        data-bs-slide="next">
+                        <span class="carousel-control-next-icon"></span>
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <!-- XE ĐẠP ĐỊA HÌNH -->
+    <div class="container my-4 mb-5" id="xe-dap-dia-hinh">
+        <div class="row">
+            <p class="fw-bold display-5 mb-4 mt-5">XE ĐẠP ĐỊA HÌNH</p>
+
+            <div class="col-md-4">
+                <div class="card h-100 shadow">
+                    <img src="https://api.xedap.vn/wp-content/uploads/2023/08/xe-dia-hinh-homepage.png"
+                        class="card-img-top" alt="Xe xịn nhất">
+                    <div class="card-body">
+                        <h5 class="card-title">Xe Đạp ĐỊa Hình MTB GIANT Talon 29 4 - Phanh Đĩa, Bánh 29 Inches - 2024
+                        </h5>
+                        <p class="fw-bold text-danger text-center">11.790.000 VND</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-8">
+                <div id="carouselDiaHinh" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="card h-100">
+                                        <img src="https://api.xedap.vn/products/GIANT/2025-talon-3-beeswax.jpg"
+                                            class="card-img-top" alt="Xe trẻ em 1">
+                                        <div class="card-body">
+                                            <h6 class="card-title">Xe Đạp Địa Hình MTB GIANT Talon 3 Beeswax - Bánh 29
+                                                Inches.
+                                            </h6>
+                                            <p class="fw-bold text-danger text-center">13.990.000 VND</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="card h-100">
+                                        <img src="https://api.xedap.vn/products/RAPTOR/hunter-4-lightbluegrey.jpg"
+                                            class="card-img-top" alt="Xe trẻ em 2">
+                                        <div class="card-body">
+                                            <h6 class="card-title">Xe Đạp Địa Hình MTB RAPTOR Hunter 4 - Bánh 27.5
+                                                Inches.
+                                            </h6>
+                                            <p class="fw-bold text-danger text-center">9.790.000 VND</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="card h-100">
+                                        <img src="https://api.xedap.vn/products/GIANT/2025-escape-3-disc-mineralgreen_2.jpg"
+                                            class="card-img-top" alt="Xe trẻ em 3">
+                                        <div class="card-body">
+                                            <h6 class="card-title">Xe Đạp Địa Hình MTB GIANT Escape 3 DISC.- Phanh Đĩa,
+                                                Bánh...</h6>
+                                            <p class="fw-bold text-danger text-center">12.975.000 VND</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="carousel-item">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="card h-100">
+                                        <img src="https://api.xedap.vn/products/GIANT/alight-2-dd_city_disc/dm-20241111101103-005.jpg"
+                                            class="card-img-top" alt="Xe trẻ em 4">
+                                        <div class="card-body">
+                                            <h6 class="card-title">Xe Đạp Trẻ Em RAPTOR Rock 3 - Bánh 22 Inches.</h6>
+                                            <p class="fw-bold text-danger text-center">3.290.000 VND</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="card h-100">
+                                        <img src="https://api.xedap.vn/products/RAPTOR/raptor-napa-darkgrey.jpg"
+                                            class="card-img-top" alt="Xe trẻ em 4">
+                                        <div class="card-body">
+                                            <h6 class="card-title">Xe Đạp Đường Phố Tourring RAPTOR Napa- Phanh Đĩa Bánh
+                                                700C</h6>
+                                            <p class="fw-bold text-danger text-center">7.290.000 VND</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="card h-100">
+                                        <img src="https://api.xedap.vn/products/RAPTOR/marlin-3-blackgreen.jpg"
+                                            class="card-img-top" alt="Xe trẻ em 4">
+                                        <div class="card-body">
+                                            <h6 class="card-title">Xe Đạp Đường Phố Touring RAPTOR Marlin 3</h6>
+                                            <p class="fw-bold text-danger text-center">7.090.000 VND</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselDiaHinh"
+                        data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon"></span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselDiaHinh"
+                        data-bs-slide="next">
+                        <span class="carousel-control-next-icon"></span>
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <!-- XE ĐẠP NỮ -->
+    <div class="container my-4 mb-5" id="xe-dap-nu">
+        <div class="row">
+            <p class="fw-bold display-5 mb-4 mt-5">XE ĐẠP NỮ</p>
+
+            <div class="col-md-4">
+                <div class="card h-100 shadow">
+                    <img src="https://api.xedap.vn/wp-content/uploads/2023/08/xe-dap-nu-homepage.jpg"
+                        class="card-img-top" alt="Xe xịn nhất">
+                    <div class="card-body">
+                        <h5 class="card-title">Xe Đạp Đường Phố TOURING VINBIKE Eva - Bánh 26 Inches</h5>
+                        <p class="fw-bold text-danger text-center">4.390.000 VND</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-8">
+                <div id="carouselNu" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="card h-100">
+                                        <img src="https://api.xedap.vn/tmp/tha-ng-sa-ka-thua-t-giant-escape-2-city-disc-2025_2.jpg"
+                                            class="card-img-top" alt="Xe trẻ em 1">
+                                        <div class="card-body">
+                                            <h6 class="card-title">Xe Đạp Đường Phó Tourning GIANT Escape 2 City Disc -
+                                                Phanh Đĩa,...
+                                            </h6>
+                                            <p class="fw-bold text-danger text-center">15.90.000 VND</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="card h-100">
+                                        <img src="https://api.xedap.vn/products/RAPTOR/lily-4-blue.jpg"
+                                            class="card-img-top" alt="Xe trẻ em 2">
+                                        <div class="card-body">
+                                            <h6 class="card-title">Xe Đạp Đường Phố Touring RAPTOR Lily 4 - Phanh Đĩa,
+                                                Bánh 24 Inches
+                                            </h6>
+                                            <p class="fw-bold text-danger text-center">5.390.000 VND</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="card h-100">
+                                        <img src="https://api.xedap.vn/products/GIANT/2025-alight-4-disc-asphaltgreen_2.jpg"
+                                            class="card-img-top" alt="Xe trẻ em 3">
+                                        <div class="card-body">
+                                            <h6 class="card-title">Xe Đạp Đường Phố Touring LIV Alight 4 Disc - Phanh
+                                                Đĩa, Bánh 700C - 2025</h6>
+                                            <p class="fw-bold text-danger text-center">10.995.000 VND</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="carousel-item">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="card h-100">
+                                        <img src="https://api.xedap.vn/products/GIANT/alight-2-dd_city_disc/dm-20241111101103-005.jpg"
+                                            class="card-img-top" alt="Xe trẻ em 4">
+                                        <div class="card-body">
+                                            <h6 class="card-title">Xe Đạp Trẻ Em RAPTOR Rock 3 - Bánh 22 Inches.</h6>
+                                            <p class="fw-bold text-danger text-center">3.290.000 VND</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="card h-100">
+                                        <img src="https://api.xedap.vn/products/GIANT/alight-2-dd_city_disc/dm-20241111101103-005.jpg"
+                                            class="card-img-top" alt="Xe trẻ em 4">
+                                        <div class="card-body">
+                                            <h6 class="card-title">Xe Đạp Đường Phố Tourring GIANT Alight 2 DD City Disc
+                                                - Phanh Đĩa, Bánh...</h6>
+                                            <p class="fw-bold text-danger text-center">11.990.000 VND</p>
+                                            <p><del>6.990.000 VND</del></p>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="card h-100">
+                                        <img src="https://api.xedap.vn/products/RAPTOR/marlin-3-blackgreen.jpg"
+                                            class="card-img-top" alt="Xe trẻ em 4">
+                                        <div class="card-body">
+                                            <h6 class="card-title">Xe Đạp Đường Phố Touring RAPTOR Marlin 3</h6>
+                                            <p class="fw-bold text-danger text-center">7.090.000 VND</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselNu"
+                        data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon"></span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselNu"
+                        data-bs-slide="next">
+                        <span class="carousel-control-next-icon"></span>
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <!-- Phụ Kiện cho xe-->
+    <div class="container my-4 mb-5"id= "phu-kien">
+        <div class="row">
+            <p class="fw-bold display-5 mb-4 mt-5">PHỤ KIỆN CHO XE</p>
+
+            <div class="col-md-4">
+                <div class="card h-100 shadow">
+                    <img src="https://api.xedap.vn/wp-content/uploads/2023/08/phu-kien-cho-xe-homepage.jpg"
+                        class="card-img-top" alt="Xe xịn nhất">
+                    <div class="card-body">
+                        <h5 class="card-title">Đèn Trước Xe Đạp Pin AAA 60 Lumen BOSHING BS04 Bicycle Front Light</h5>
+                        <p class="fw-bold text-danger text-center">199.000 VND</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-8">
+                <div id="carouselxephu" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="card h-100">
+                                        <img src="https://api.xedap.vn/products/Ph%E1%BB%A5%20ki%E1%BB%87n/PK%20RAPTOR/ra-230123.jpg"
+                                            class="card-img-top" alt="Xe trẻ em 1">
+                                        <div class="card-body">
+                                            <h6 class="card-title">Bình nước Xe Đạp 600ml Raptor RA67 WAter Bottle
+                                            </h6>
+                                            <p class="fw-bold text-danger text-center">129.000 VND</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="card h-100">
+                                        <img src="https://api.xedap.vn/products/GI/gi-230118.jpg" class="card-img-top"
+                                            alt="Xe trẻ em 2">
+                                        <div class="card-body">
+                                            <h6 class="card-title">Đèn Trước Xe Đạp Sạc Type C 300 Lumen GI62 Bicycle
+                                                Front Light
+                                            </h6>
+                                            <p class="fw-bold text-danger text-center">259.000 VND</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="card h-100">
+                                        <img src="https://api.xedap.vn/products/SHIMANO/y-6-sc-98180-1.jpg"
+                                            class="card-img-top" alt="Xe trẻ em 3">
+                                        <div class="card-body">
+                                            <h6 class="card-title">Bộ Tay Lắc Xe Đạp SHIMANO ST-6700 Bicycle Bracket
+                                                Covers</h6>
+                                            <p class="fw-bold text-danger text-center">499.000 VND</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="carousel-item">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="card h-100">
+                                        <img src="https://api.xedap.vn/products/SHIMANO/y-0-dk-98010-1.jpg"
+                                            class="card-img-top" alt="Xe trẻ em 4">
+                                        <div class="card-body">
+                                            <h6 class="card-title">Bộ Tay Lắc Xe Đạp SHIMANO ST-R8000 Bicycle Bracket
+                                                Covers</h6>
+                                            <p class="fw-bold text-danger text-center">549.000 VND</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="card h-100">
+                                        <img src="https://api.xedap.vn/products/GI/gi-230120.jpg" class="card-img-top"
+                                            alt="Xe trẻ em 4">
+                                        <div class="card-body">
+                                            <h6 class="card-title">Bộ Đèn Trước Xe Đạp Pin CR20302 8 Lumen & 3 Lume
+                                                GI64...</h6>
+                                            <p class="fw-bold text-danger text-center">109.000 VND</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="card h-100">
+                                        <img src="https://api.xedap.vn/products/Ph%E1%BB%A5%20ki%E1%BB%87n/PK%20RAPTOR/ra-230125.jpg"
+                                            class="card-img-top" alt="Xe trẻ em 4">
+                                        <div class="card-body">
+                                            <h6 class="card-title">Bình Nước Xe Đạp 600ml Raptor MA68 Water Bottle</h6>
+                                            <p class="fw-bold text-danger text-center">129.000 VND</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselxephu"
+                        data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon"></span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselxephu"
+                        data-bs-slide="next">
+                        <span class="carousel-control-next-icon"></span>
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <!-- Danh sách cửa hàng -->
+    <div class="container my-5 mb-5" id="cuahang">
+        <h2 class="fw-bold text-center mt-5 mb-4">HỆ THỐNG CỬA HÀNG XEDAP.VN</h2>
+        <div class="row">
+
+            <div class="col-md-4">
+                <div class="card h-100 shadow">
+                    <div class="card-body">
+                        <h5 class="card-title"><i class="fa-solid fa-store"></i> Tô Kỳ - Hóc Môn</h5>
+                        <p class="card-text">14/1A Tô Ký, Xã Thới Tam Thôn, Huyện Hóc Môn, TP. Hồ Chí Minh</p>
+                        <p><i class="fa-solid fa-phone"></i>0911 924 824</p>
+                        <p><i class="fa-solid fa-clock"></i>Thứ 2 - Chủ Nhật</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card h-100 shadow">
+                    <div class="card-body">
+                        <h5 class="card-title"><i class="fa-solid fa-store"></i> Bờ Tân Bao Thắng - HCM</h5>
+                        <p class="card-text">93C Bờ Bao Tân Thắng, Phường Sơn Kỳ, Quận Tân Phú, TP. Hồ Chí Minh</p>
+                        <p><i class="fa-solid fa-phone"></i>0911 971 671</p>
+                        <p><i class="fa-solid fa-clock"></i>Thứ 2 - Chủ Nhật</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card h-100 shadow">
+                    <div class="card-body">
+                        <h5 class="card-title"><i class="fa-solid fa-store"></i> Hải Thượng Lãn Ông - HCM</h5>
+                        <p class="card-text">100 Hải Thượng Lãn Ông, Phường 10, Quận 5, TP. Hồ Chí Minh</p>
+                        <p><i class="fa-solid fa-phone"></i>0911 924 624</p>
+                        <p><i class="fa-solid fa-clock"></i>Thứ 2 - Chủ Nhật</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card h-100 shadow">
+                    <div class="card-body">
+                        <h5 class="card-title"><i class="fa-solid fa-store"></i> Nguyễn Thị Thập - HCM</h5>
+                        <p class="card-text">458 Nguyễn Thị Thập, Phường Tân Quy, Quận 7, TP. Hồ Chí Minh</p>
+                        <p><i class="fa-solid fa-phone"></i>0911 923 523</p>
+                        <p><i class="fa-solid fa-clock"></i>Thứ 2 - Chủ Nhật</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card h-100 shadow">
+                    <div class="card-body">
+                        <h5 class="card-title"><i class="fa-solid fa-store"></i> Võ Thị Sáu - HCM</h5>
+                        <p class="card-text">63C Võ Thị Sáu, Phường 6, Quận 3, TP. Hồ Chí Minh</p>
+                        <p><i class="fa-solid fa-phone"></i>0911 963 063</p>
+                        <p><i class="fa-solid fa-clock"></i>Thứ 2 - Chủ Nhật</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card h-100 shadow">
+                    <div class="card-body">
+                        <h5 class="card-title"><i class="fa-solid fa-store"></i> Nguyễn Cơ Thạch</h5>
+                        <p class="card-text">Shop B1-00.05, Sarimi, 72 Nguyễn Cơ Thạch, Phường An Lợi Đông, TP. Thủ Đức,
+                            TP. Hồ Chí Minh</p>
+                        <p><i class="fa-solid fa-phone"></i>0911 952 652</p>
+                        <p><i class="fa-solid fa-clock"></i>Thứ 2 - Chủ Nhật</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <footer class="bg-dark text-white pt-4 pb-2 mt-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-3">
+                    <h5>XeDap.vn</h5>
+                    <p>Website bán xe đạp uy tín số 1 Việt Nam. Chuyên cung cấp xe đạp địa hình, xe đạp trẻ em, xe
+                        touring, và phụ kiện.</p>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <h5>Liên kết nhanh</h5>
+                    <ul>
+                        <li><a href="#cuahang" class="text-white text-decoration-none">Cửa hàng</a></li>
+                        <li><a href="#" class="text-white text-decoration-none">Giỏ hàng</a></li>
+                        <li><a href="dangnhap.html" class="text-white text-decoration-none">Đăng nhập</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <h5>Liên hệ</h5>
+                    <p><i class="fa-solid fa-location-dot"></i> 123 Nguyễn Văn Cừ, Quận 5, TP.HCM</p>
+                    <p><i class="fa-solid fa-phone"></i> 0909 123 456</p>
+                    <p><i class="fa-solid fa-envelope"></i> support@xedap.vn</p>
+                    <div>
+                        <a href="https://www.facebook.com/photo?fbid=122279715356026808&set=a.122110035056026808&locale=vi_VN"
+                            class="text-white me-3"><i class="fa-brands fa-facebook"></i></a>
+                        <a href="#" class="text-white me-3"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="https://www.youtube.com/watch?v=BoKQ6991WL8" class="text-white"><i
+                                class="fa-brands fa-youtube"></i></a>
+                    </div>
+                </div>
+
+            </div>
+
+            <hr class="border-light">
+            <div class="text-center">
+                <p class="mb-0">&copy; 2025 XeDap.vn. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+
+</body>
+
+</html>

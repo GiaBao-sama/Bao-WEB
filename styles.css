@@ -1,0 +1,196 @@
+.carousel-inner {
+    max-height: 900px;
+    overflow: hidden;
+}
+
+.carousel-inner img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    margin: 0 auto;
+}
+
+.card {
+    transition: all 0.2s ease;
+}
+.carousel-item .testimonial-image{
+    width: 89%;
+    height: 20%;
+    object-fit: cover;
+}
+
+.card:hover {
+    border: 2px solid red;
+    transform: translateY(-1px);
+}
+
+h1 {
+    color: white;
+}
+footer p{
+    color:white;
+}
+p {
+    color: blue;
+    font-style: bold;
+}
+
+.login-container {
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    width: 350px;
+    text-align: center;
+    margin: 50px auto;
+}
+
+.login-header h2 {
+    color: #333333;
+    font-size: 24px;
+    margin-bottom: 5px;
+}
+
+.login-header p {
+    color: #666666;
+    font-size: 14px;
+    margin-bottom: 25px;
+}
+
+.form-group {
+    text-align: left;
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    color: #555555;
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+
+.form-group input {
+    width: calc(100% - 20px);
+    padding: 10px;
+    border: 1px solid #dddddd;
+    border-radius: 8px;
+    font-size: 16px;
+    outline: none;
+}
+
+.forgot-password {
+    float: right;
+    font-size: 13px;
+    color: #6a00ff;
+    text-decoration: none;
+    margin-top: 5px;
+}
+
+.linkdangky {
+    font-size: 14px;
+    margin-top: 20px;
+    color: #666666;
+}
+
+.linkdangky a {
+    color: #6a00ff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+
+.dangnhapmxh {
+    display: flex;
+    justify-content: space-between;
+}
+
+.social-btn {
+    width: 48%;
+    padding: 12px;
+    border: 1px solid #dddddd;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+}
+
+.social-btn:hover {
+    background-color: #f0f0f0;
+    transform: scale(1.05);
+    transition: transform 0.3s ease;
+}
+
+.gg-btn {
+    color: red;
+}
+
+.continue-btn { 
+    width: 100%;
+    padding: 12px;
+    color: #ffffff;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.continue-btn:hover {
+    background-color: #5400d1;
+    transform: scale(1.05);
+    transition: transform 0.3s ease;
+
+
+}   
+.buy-btn {
+    width: 100%;
+    padding: 12px;
+    background-color: #002fff;
+    color: #ffffff;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+}
+.buy-btn:hover {
+    background-color: #0d00c5;
+    transform: scale(1.05);
+    transition: transform 0.3s ease;
+}
+.price {
+    color: black;
+    font-weight: bold;
+    font-size: 30px;
+}
+.testimonial-box{
+    border: 2px solid rgb(68, 0, 255);
+    padding: 50px 0;
+    border-radius: 10px;
+    text-align: center;}
+    /* Hiệu ứng thu nhỏ navbar */
+.navbar.navbar-shrink {
+    padding: 8px 0;
+    transition: all 0.3s ease-in-out;
+}
+
+/* Hiệu ứng fade-in */
+.fade-in {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s ease;
+}
+.fade-in.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+  /* highlight active link */
+  #mainNavbar .nav-link.active { background: rgba(255,255,255,0.06); border-radius:6px; }
+  #cartBadge { font-size: 0.65rem; padding: 0.28rem 0.36rem; }
+  /* make navbar brand compact on small screens */
+  @media (max-width: 575.98px) {
+    .navbar-brand span { display: none; }
+  }
+
