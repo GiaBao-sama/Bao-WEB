@@ -5,7 +5,7 @@
 
 .carousel-inner img {
     width: 100%;
-    height: 100%;
+    height: auto;
     display: block;
     margin: 0 auto;
 }
@@ -13,12 +13,71 @@
 .card {
     transition: all 0.2s ease;
 }
-.carousel-item .testimonial-image{
+
+.carousel-item .testimonial-image {
     width: 89%;
     height: 20%;
     object-fit: cover;
 }
+/* Hiệu ứng mờ dần cho phần tử khi cuộn trang */
+.reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s ease-out;
+}
 
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Navbar khi cuộn xuống sẽ có bóng đổ và đậm màu hơn */
+.navbar-scrolled {
+    background-color: rgba(0, 0, 0, 0.95) !important;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    transition: all 0.3s ease;
+}
+.hot-vai {
+    background: linear-gradient(135deg, #f500009f 60%, #ffac94 40%);
+    padding: 40px 20px;
+    color: white;
+    margin: 0 20px;
+}
+.card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: none;
+    border-radius: 15px;
+    overflow: hidden;
+}
+
+.card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+}
+
+.card img {
+    transition: transform 0.5s ease;
+}
+
+.card:hover img {
+    transform: scale(1.1);
+}
+.hot-vai .card {
+    border: none;
+    border-radius: 15px;
+    overflow: hidden;
+    transition: transform 0.3s;
+}
+
+.hot-vai .card:hover {
+    transform: translateY(-5px);
+}
+.hot-vai-khung {
+        background-color: #fff; /* Nền trắng để làm nổi bật sản phẩm */
+        padding: 70px;
+        border-radius: 15px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    }
 .card:hover {
     border: 2px solid red;
     transform: translateY(-1px);
@@ -27,9 +86,11 @@
 h1 {
     color: white;
 }
-footer p{
-    color:white;
+
+footer p {
+    color: white;
 }
+
 p {
     color: blue;
     font-style: bold;
@@ -126,9 +187,10 @@ p {
     color: red;
 }
 
-.continue-btn { 
+.continue-btn {
     width: 100%;
     padding: 12px;
+    background-color: #6a00ff;
     color: #ffffff;
     border: none;
     border-radius: 10px;
@@ -143,11 +205,12 @@ p {
     transition: transform 0.3s ease;
 
 
-}   
+}
+
 .buy-btn {
     width: 100%;
     padding: 12px;
-    background-color: #002fff;
+    background-color: #fc0000;
     color: #ffffff;
     border: none;
     border-radius: 10px;
@@ -155,42 +218,141 @@ p {
     font-weight: bold;
     cursor: pointer;
 }
+
 .buy-btn:hover {
-    background-color: #0d00c5;
+    background-color: #b30000;
     transform: scale(1.05);
     transition: transform 0.3s ease;
 }
+
 .price {
     color: black;
     font-weight: bold;
     font-size: 30px;
 }
-.testimonial-box{
+
+.testimonial-box {
     border: 2px solid rgb(68, 0, 255);
     padding: 50px 0;
     border-radius: 10px;
-    text-align: center;}
-    /* Hiệu ứng thu nhỏ navbar */
-.navbar.navbar-shrink {
-    padding: 8px 0;
-    transition: all 0.3s ease-in-out;
+    text-align: center;
 }
-
-/* Hiệu ứng fade-in */
-.fade-in {
+/* Nút Cuộn về đầu trang */
+#backToTop {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 50px;
+    height: 50px;
+    background: #dc3545;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
     opacity: 0;
-    transform: translateY(30px);
-    transition: all 0.8s ease;
+    visibility: hidden;
+    transition: all 0.3s;
+    z-index: 1000;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
 }
-.fade-in.show {
-    opacity: 1;
-    transform: translateY(0);
-}
-  /* highlight active link */
-  #mainNavbar .nav-link.active { background: rgba(255,255,255,0.06); border-radius:6px; }
-  #cartBadge { font-size: 0.65rem; padding: 0.28rem 0.36rem; }
-  /* make navbar brand compact on small screens */
-  @media (max-width: 575.98px) {
-    .navbar-brand span { display: none; }
-  }
 
+#backToTop.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Hiệu ứng Zoom khi di chuột vào ảnh sản phẩm */
+.card-img-top {
+    transition: transform 0.5s ease;
+}
+
+.card:hover .card-img-top {
+    transform: scale(1.1);
+}
+
+.card {
+    overflow: hidden; /* Đảm bảo ảnh không tràn ra ngoài khi zoom */
+}
+
+/* Toast thông báo đẹp mắt */
+.custom-toast {
+    position: fixed;
+    top: 80px;
+    right: 20px;
+    background: #28a745;
+    color: white;
+    padding: 12px 25px;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    transform: translateX(120%);
+    transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    z-index: 9999;
+}
+
+.custom-toast.active {
+    transform: translateX(0);
+}
+/* Khung kết quả tìm kiếm nhanh */
+#search-results-container {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: white;
+    border-radius: 0 0 10px 10px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    display: none;
+    z-index: 1050;
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.search-item {
+    display: flex;
+    padding: 10px;
+    border-bottom: 1px solid #eee;
+    align-items: center;
+    text-decoration: none;
+    color: #333;
+    transition: background 0.2s;
+}
+
+.search-item:hover { background: #f8f9fa; }
+.search-item img { width: 50px; height: 50px; object-fit: cover; margin-right: 15px; }
+
+/* Đồng hồ đếm ngược siêu sale */
+.countdown-box {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 15px;
+}
+
+.countdown-unit {
+    background: #000;
+    color: #fff;
+    padding: 10px;
+    border-radius: 5px;
+    min-width: 60px;
+}
+
+.countdown-unit span { display: block; font-size: 1.5rem; font-weight: 900; }
+.countdown-unit label { font-size: 0.7rem; text-transform: uppercase; margin: 0; }
+.cart-item {
+    display: flex;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid #eee;
+}
+.cart-item img {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 5px;
+    margin-right: 15px;
+}
+.cart-item-detail { flex-grow: 1; }
+.cart-item-name { font-size: 0.9rem; font-weight: bold; margin-bottom: 0; }
+.cart-item-price { color: #dc3545; font-size: 0.85rem; }

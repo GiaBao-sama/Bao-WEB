@@ -2,6 +2,9 @@
 <html lang="vi">
 
 <head>
+    <script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-storage-compat.js"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -24,203 +27,236 @@
 
 </head>
 
-<!-- Bootstrap JS -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-
-</script>
-
 <body>
-<script>
-(function(){if(!window.chatbase||window.chatbase("getState")!=="initialized"){window.chatbase=(...arguments)=>{if(!window.chatbase.q){window.chatbase.q=[]}window.chatbase.q.push(arguments)};window.chatbase=new Proxy(window.chatbase,{get(target,prop){if(prop==="q"){return target.q}return(...args)=>target(prop,...args)}})}const onLoad=function(){const script=document.createElement("script");script.src="https://www.chatbase.co/embed.min.js";script.id="C7h43oYeGdERYj4toFTRS";script.domain="www.chatbase.co";document.body.appendChild(script)};if(document.readyState==="complete"){onLoad()}else{window.addEventListener("load",onLoad)}})();
-</script>
-    <!-- Bootstrap JS -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
+    <div class="bg-warning text-dark py-1 overflow-hidden">
+        <marquee behavior="scroll" direction="left" class="fw-bold">
+            Mien phi giao hang-Sua chua tai nha | Bao hanh 5 nam- Doi tra trong 30 ngay | Giam gia den 50% cac phu kien
+            | Hotline: 1900 633 999 | Email: info@xeadap.vn | Fanpage: fb.com/xedap.vn
+        </marquee>
+    </div>
+    <!-- START: Updated Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top py-2" id="mainNavbar">
+        <div class="container">
+            <!-- Brand / Logo -->
+            <a class="navbar-brand d-flex align-items-center gap-2" href="index.html">
+                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAQAAAADFCAMAAACM/tznAAAAkFBMVEX///8AAAACAwX8/PwEBATe3t75+fkAAAMHBwfj4+Po6OgFBgj29vYDBQTV1dXIyMh5eXnS0tK6urqhoaFTU1Pw8PBxcXGEhIScnJyysrIiIiJZWVmsrKxsbGyNjY0+Pj5jY2OTk5MzMzMuLi4RERFKSko7OzsaGhp+fn7CwsIwMDAYGBhMTExdXl9sbW8nKCo3BiwgAAALGUlEQVR4nO2cC3eiSgyAiSPIS/CFb1Bbtbptt///390kA4KgfZzbrWDz3d091xdnEjKZJJPBMARBEARBEARBEARBEARBEARBEARBEARBEARBEARBEARBEARB+KeoWw9AuDW/zwSUyoQOlr3R6mE/SgLDsH6TIiz8G81iyFkFv8sSVDgmse12224D/QUY3npMPwXd6MEeJW4jLfrTwn9tgOWvcQd9LX7rHADzlyhgiKZvt0sK6KAG1r9CAcrK/F6rpAEA5zcowDCcZTKZbAZlDaAJDG49tJ9AZXd5V1aAB5ubjuyHUASpYVq1gF+hgBMOrv+tky+kNfF3TIGchCOBXAEA7q2H9JPgNBgVogGSf/IrlsEC1poCIg/dn+fh/+2U+l0KQHGPqzwdSox7CIWVEZkBY14lCPr4sevzD4LN+mH7vI+ndzL/cWZbbnBcTifr1TO8S/vtddNPf5T/e19EZv842/T+rrcFwTtM+mK+iYz7n/nmX69TDnpOKaA34/LIfaIsP4oo9/euyM/u/3DrYX43fn+Z9Mbr19HL6vGJjf6K+KSBDq7/mzubBRbed/SDSbzbVrPeChQBBbce8rfDN9Q5bKFc9rmsgdGduQEue1uT63e/0/JYci4HYkYEx1sP+VtR9Cd8x/jbXBGDNpfGbHwDtuquwgCUZYPCedd8fzEcsnmSwPTWY/5mYpz83kUFpNsgveksxGjYnUP6rnPrIX8jynq9UPVOpfdGybEgrPsGNn+yuJ+lUBk93vSoeD4UvzeI9FdSYS3DmeNcIQ0M78cLzNJNn7L4u5mla6K5x8M33GeOEwHCmw7621CG/3zJ/cMLCXip5EE2gOsCbO9iYwhFGECr4v287SD9VFXzXmeLGvBa0AnQIhqvA2WMoer+O958NU5mZnThB0qxH6Ci2Oznx/sPWEPrwgqgl7/tLgnLUa/iWeCh2QC8BucfNBCygAsuoKiG9bHYJMK4W6CwAT3lYpBZifJvMf5vYHZhCqTQ4mCjCh5m1pkClOG86V9Rp8Q+PiSTw3rczBwRs6C5jm2uKYB1sO8XFYDqcJ9AJ0jcLQIwHzTXIfZ1HNBuV6OBk1PUVZCihBFvk3S7ZCGwaHZQEM5RFnhPAbQVPDkLfnFKzHbaU+6m5u3G/h1gLDR9O9WArymgU+qKUrg6ROHgaFqsjaaa/wnqAPxT3BnoUAm0ECJ5FzNAx3RMjBYaL77GiiLXoa2BafL3DyvhbHmAcfUnvFV2H8UBleY9J8zl2jurEgFUV/oEoIve4R7Qs1idvYqmz4UgoVtIALPvhYBp0foHh/nTRLu8VNItxP4q1ZGLNgKj243v3xNtT2FSl3pDy6xQAQ934gMvoYy4oIAZ+kmXiPxM5gN4ML+QNDYCpf9Tl5dx/YkxhHwKdM/2y1chfucIGCG4ekpcqB3UmzPBq0PXH25yCziXH8BGO4igQ03DVv6jZunAcMPlcDg7Xq5yR4Peo505wY7d3cWHzXS4RIbD6WYTGG5gvKET6OOieVziB0e3KeLzfYoG6/x2rgd+bhDs4Jcj3RmSrYPcFXTGDCA6YBoxzq9jj8NsXtUYiuMNp1dof6Gc9m1osSnz4E+6ec7C4Q4Ucx78ih9Tp9wRClMjrR4YRs2TAxydO972BqZvGb4ziLc0dAz75mmkE23mLM/b5Khesm4JWJxdwgifqCjojNA1HlDaKJjFNujTJHSept77x9ZwrGXV98maPYDu/qDuX3eiSxwTaomKtPhU/hqc1UQwCP5jGtNegOnAOP0kms6hnZ4mqbEJoOseljN4a4MhnddpwcRPWPzR0eevBqkBeLDTd1XPbxPFXvjuEJ0nzqQ8FESXoI1galh1PVaG6b9Zvj8oWrglUdNusIOZzeKhVgBaRz/9LuX/QyBjiViN6Annp0srY0AeBVUwrK0NqAsFDHplUqW3g7kNTJy0Sx7fXqT5IMS5Y3MXKP8xC35MfHG6DGqyz5votHVWUwVcJaDkFydw//QOSkDv2fjmc0TiKGXxPYZ9IXB4AzgriA5wXaCVod5usIJSESY2tN2xLoSFIRkAebX0aADOHzpAGFuFHdO4XCtKtAaaViYInnRF0CsabwK6FLLW9o9O8YFLQMWwf1naKVb+HNgEGtREgdItqb7L+6To1E/CPZACbJj76R3fUGgUnm+ZOlA+OkKTwKaOyrr6wQoKvX0H/foIWmf9LwHbBGi3oCjqAXip9InbpUKBUnOtAb85fpAW/5CWNLb4Tf42L41pJYi8H/RUpUkwLp2eUmgo3S6fKWqKAibar6toyyawyt7/Ay072xLxOXdYGtUodwi90jumzgviZswBi2b2yudpvYBT+VfRDCBLXvA9N/+ADdsLG6AULS7Kl3ykMgo8/sTw/zfs/xbpqpZ6/XTO9yjTW/EiTweI4fXSYQFcGeer8ptrVkBDjpWFKH8WybAT8NirK+VT0f+J6l0RJ8cJ7QtfqBwZr/PyZE9IAZ1CTFVflNOGXTp8pQMfj/d6KORDo3fo3TnYlbUuv4IxrUR9S64kNqKn2FrBPq/q9vW6R0GcMijkp7xpSpvHK/d6mSeAcilsoBXQhCai5GymFhRAAQ7ZcPRKt79XDH7PoYyhnF6nCmjAYzbC87SNFeBpBWx0ABTg7bdn71W8lbErrw4zrYALOyk1Q62o9SN/fcwjIYtDI2VZT/DhMfFNuUNkqhVQ/9PV1tvaKBT1cbVrZXN3wCkOxwaXNsbP6Jcl7elVoAGdM1wbsU4vdM8cD5z6otjrYf4bf3CVqGzrOx0HNK53RnFJoEMPBwnSvjBSSiXULf9MlW51xKeP4LlxrYMOd0TAVndGpgp4+cRDk/yii6RwgvaTYNe0zcLMBfw1VL7V6eIq8JEplwPECR+tOfevjWBFpZy2jl+UodtDDwCVUP9d8IfP0PIwHe437XgdLvlcy9KRoc4PhmgAX3PmFEPz8cJKhlB7MOYjBcSGEx+01Zv0BLn4a4IoY8+l1No9ZOaDs36U1wNXM0Pa7IB9bzJ+pCRw8ZVDgio1AF1Zq5cFWO/vWSuDun9tm3133joKSelH6t0tL/zUetQJxUfBw4/jvOuRuC7SbttdncNa4YSeIbdPyieDlDI/MKSJri3XLwqK3s/OTdA7uwvdNZR/UNab+c7BAEUxAB/BrONDdiZXN+1x3NE+nbkf3Ti8xdd2/0lvzhMFk7auJNWM8KpbRnlG+vDYx42/OFcGl9d3EtjnrRSvVc+S+P5qjc5fpIY7+jB6VYb/duXush3p09W9GkbByjjanJ2U98Zx3C/6oAA8f6r1fbqv9sPx2uA+oB9BRcK+fuIbpIE13bvSMoav+ltOXjw6DfqpC/158asFcou3jvBCNrxFdWwPQc8V0c5m8eZwtxy3tWR7gJ8ZuDLhoboUuDE/d7fdYgdYQwXww8Awt89qoHqI/vSZ23rQbp8++7BkqhxB4hcvY0QJ6HW0DQ81XABOUJA77md18CjEu89tEbhwvXx63ErxPvmknxU83MFYi0/yx3Uug+h5CvNFL9kkf1+26bEYOgY7+ULqalHZE3nE60wnMR2caXkeP2SRuidqnATj2LjHI8PTD87QvY2fPvzF3wqfCtchG+JjpCOHCsn/VIb/DfUEQvqkZBy310HxZ1+etCrdL+92290unS/T3YX/YsDfDBqBO7ULdw/iygnxT5L2lGYcAvVRzl0HdAQTLMej1X71Ek9Z+i8f/M1OSATD9Wi1Wo3Gy0BfvP4KEARBEARBEARBEARBEARBEARBEARBEARBEARBEARBEARBEARBEG7Pf1ECfHXg/ng9AAAAAElFTkSuQmCC"
+                    alt="Logo XeDap.vn" height="34" style="filter: drop-shadow(0 1px 2px rgba(0,0,0,.4));">
+                <span class="fw-bold ms-1">XeDap.vn</span>
+            </a>
 
-<!-- START: Updated Navbar -->
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary sticky-top py-2" id="mainNavbar">
-  <div class="container">
-    <!-- Brand / Logo -->
-    <a class="navbar-brand d-flex align-items-center gap-2" href="index.html">
-      <i class="fa-solid fa-bicycle me-2 text-warning"></i> XeDap.vn
+            <!-- Toggler -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTop"
+                aria-controls="navbarTop" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
 
-    </a>
+            <!-- Collapsible content -->
+            <div class="collapse navbar-collapse" id="navbarTop">
+                <!-- Left links -->
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0 align-items-lg-center">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="index.html">Trang chủ</a>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="#xe-dap-tre-em">Xe đạp trẻ em</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#xe-dap-dia-hinh">Xe đạp địa hình</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#xe-dap-duong-pho">Xe đạp đường phố</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#xe-dap-nu">Xe đạp nữ</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#phu-kien">Phụ kiện</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#lien-he">Liên hệ</a></li>
+                </ul>
 
-    <!-- Toggler -->
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTop"
-      aria-controls="navbarTop" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span> 
-    </button>
+                <!-- Right icons -->
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-center">
+                    <!-- Search icon for small screens -->
+                    <li class="nav-item d-lg-none me-2">
+                        <a class="nav-link" href="#" id="mobileSearchToggle"><i
+                                class="fa-solid fa-magnifying-glass"></i></a>
+                    </li>
+                    <li class="nav-item dropdown me-2" id="userAccountSection">
+                        <a class="nav-link dropdown-toggle d-flex align-items-center gap-2" href="#" id="userDropdown"
+                            role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fa-solid fa-user"></i>
+                            <span id="userDisplayName">Tài khoản</span>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown"
+                            id="userDropdownMenu">
+                            <li><a class="dropdown-item" href="#" data-bs-toggle="modal"
+                                    data-bs-target="#loginModal">Đăng nhập</a></li>
+                            <li><a class="dropdown-item" href="#" data-bs-toggle="modal"
+                                    data-bs-target="#registerModal">Đăng ký</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" href="thanhtoan.html">Đơn hàng</a></li>
+                        </ul>
+                    </li>
 
-    <!-- Fix modal backdrop issue -->
+                    <!-- Cart -->
+                    <li class="nav-item me-2">
+                        <a class="nav-link position-relative" href="#" id="cartBtn" aria-label="Giỏ hàng">
+                            <i class="fa-solid fa-cart-shopping fa-lg"></i>
+                            <span id="cartBadge"
+                                class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">0</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>yy
+        </div>
+
+    </nav>
+
+    <!-- LOGIN MODAL -->
+    <div class="modal fade" id="loginModal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered modal-md">
+            <div class="modal-content rounded-4 shadow-lg">
+
+                <div class="modal-header border-0">
+                    <h3 class="modal-title fw-bold ">Đăng nhập</h3>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+
+                <div class="modal-body px-4">
+                    <form>
+                        <div class="mb-3">
+                            <label class="form-label fw-semibold">Email</label>
+                            <input type="email" class="form-control form-control-lg" placeholder="Nhập email" required>
+                        </div>
+
+                        <div class="mb-4">
+                            <label class="form-label fw-semibold">Mật khẩu</label>
+                            <input type="password" class="form-control form-control-lg" placeholder="Nhập mật khẩu"
+                                required>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary btn-lg w-100 rounded-3">
+                            Đăng nhập
+                        </button>
+                    </form>
+
+                    <div class="text-center mt-3">
+                        <span>Chưa có tài khoản?</span>
+                        <a href="#" data-bs-target="#registerModal" data-bs-toggle="modal" class="fw-bold">
+                            Đăng ký ngay
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
     <script>
-      document.addEventListener('hidden.bs.modal', function (e) {
-        if (document.querySelectorAll('.modal.show').length === 0) {
-          document.body.classList.remove('modal-open');
-          document.body.style.overflow = '';
-          const backdrop = document.querySelector('.modal-backdrop');
-          if (backdrop) backdrop.remove();
-        }
-      });
+        const loginForm = document.querySelector('#loginModal form');
+        loginForm.addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            const email = this.querySelector('input[type="email"]').value;
+            const password = this.querySelector('input[type="password"]').value;
+
+            const users = JSON.parse(localStorage.getItem('users')) || [];
+
+            const user = users.find(u => u.email === email && u.password === password);
+
+            if (user) {
+                alert(`Chào mừng ${user.fullName} đã quay trở lại!`);
+                sessionStorage.setItem('isLoggedIn', 'true');
+                sessionStorage.setItem('currentUser', JSON.stringify(user));
+
+                bootstrap.Modal.getInstance(document.getElementById('loginModal')).hide();
+                location.reload();
+            } else {
+                alert("Email hoặc mật khẩu không chính xác!");
+            }
+        });
     </script>
-    <div class="collapse navbar-collapse" id="navbarTop">
-      <!-- Left links -->
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0 align-items-lg-center">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="index.html">Trang chủ</a>
-        </li>
-        <li class="nav-item"><a class="nav-link" href="#xe-dap-tre-em">Xe đạp trẻ em</a></li>
-        <li class="nav-item"><a class="nav-link" href="#xe-dap-dia-hinh">Xe đạp địa hình</a></li>
-        <li class="nav-item"><a class="nav-link" href="#xe-dap-duong-pho">Xe đạp đường phố</a></li>
-        <li class="nav-item"><a class="nav-link" href="#xe-dap-nu">Xe đạp nữ</a></li>
-        <li class="nav-item"><a class="nav-link" href="#phu-kien">Phụ kiện</a></li>
-        <li class="nav-item"><a class="nav-link" href="#lien-he">Liên hệ</a></li>
-      </ul>
+    <!-- REGISTER MODAL -->
+    <div class="modal fade" id="registerModal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered modal-md">
+            <div class="modal-content rounded-4 shadow-lg">
 
-      <!-- Search (hidden on xs) -->
-      <form class="d-none d-lg-flex mx-3" role="search" onsubmit="event.preventDefault(); doSearch();">
-        <input id="navSearch" class="form-control form-control-sm" type="search" placeholder="Tìm kiếm xe, phụ kiện..." aria-label="Search">
-        <button class="btn btn-sm btn-outline-light ms-2" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
-      </form>
+                <div class="modal-header border-0">
+                    <h3 class="modal-title fw-bold">Tạo tài khoản</h3>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
 
-      <!-- Right icons -->
-      <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-center">
-        <!-- Search icon for small screens -->
-        <li class="nav-item d-lg-none me-2">
-          <a class="nav-link" href="#" id="mobileSearchToggle"><i class="fa-solid fa-magnifying-glass"></i></a>
-        </li>
+                <div class="modal-body px-4">
+                    <form>
+                        <div class="mb-3">
+                            <label class="form-label fw-semibold">Họ và tên</label>
+                            <input type="text" class="form-control form-control-lg" placeholder="Nhập họ tên" required>
+                        </div>
 
-        <li class="nav-item dropdown me-2">
-          <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown"
-            aria-expanded="false">
-            <i class="fa-solid fa-user"></i> Tài khoản
-          </a>
-          <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
-            <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#loginModal">Đăng nhập</a></li>
-            <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#registerModal">Đăng ký</a></li>
-            <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="#">Đơn hàng</a></li>
-          </ul>
-        </li>
+                        <div class="mb-3">
+                            <label class="form-label fw-semibold">Email</label>
+                            <input id="email" type="email" class="form-control form-control-lg" placeholder="Nhập email"
+                                required>
+                        </div>
 
-        <!-- Cart -->
-        <li class="nav-item me-2">
-          <a class="nav-link position-relative" href="#" id="cartBtn" aria-label="Giỏ hàng">
-            <i class="fa-solid fa-cart-shopping fa-lg"></i>
-            <span id="cartBadge" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">0</span>
-          </a>
-        </li>
+                        <div class="mb-4">
+                            <label class="form-label fw-semibold">Mật khẩu</label>
+                            <input id="password" type="password" class="form-control form-control-lg"
+                                placeholder="Tạo mật khẩu" required>
+                        </div>
 
-      </ul>
-    </div>
-  </div>
+                        <button type="submit" class="btn btn-success btn-lg w-100 rounded-3">
+                            Đăng ký
+                        </button>
+                    </form>
 
-  <!-- Small-screen search input (hidden by default) -->
-  <div class="container d-lg-none" id="mobileSearchRow" style="display:none;">
-    <div class="py-2">
-      <form class="d-flex" role="search" onsubmit="event.preventDefault(); doSearch();">
-        <input id="mobileNavSearch" class="form-control form-control-sm" type="search" placeholder="Tìm kiếm..." aria-label="Search mobile">
-        <button class="btn btn-sm btn-outline-light ms-2" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
-      </form>
-    </div>
-  </div>
-</nav>
+                    <div class="text-center mt-3">
+                        <span>Đã có tài khoản?</span>
+                        <a href="#" data-bs-target="#loginModal" data-bs-toggle="modal" class="fw-bold">
+                            Đăng nhập
+                        </a>
+                    </div>
+                </div>
 
-<!-- MODAL ĐĂNG NHẬP -->
-<div class="modal fade" id="loginModal" tabindex="-1">
-  <div class="modal-dialog modal-dialog-centered modal-md">
-    <div class="modal-content rounded-4 shadow-lg bg-light">
-
-      <div class="modal-header border-0">
-        <h3 class="modal-title fw-bold text-dark">Đăng nhập</h3>
-        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-      </div>
-
-      <div class="modal-body px-4">
-        <form>
-          <div class="mb-3">
-            <label class="form-label fw-semibold text-dark">Email</label>
-            <input type="email" class="form-control form-control-lg" placeholder="Nhập email">
-          </div>
-
-          <div class="mb-4">
-            <label class="form-label fw-semibold text-dark">Mật khẩu</label>
-            <input type="password" class="form-control form-control-lg" placeholder="Nhập mật khẩu">
-          </div>
-
-          <button type="submit" class="btn btn-primary btn-lg w-100 rounded-3 mb-2">
-            Đăng nhập
-          </button>
-        </form>
-
-        <div class="text-center mt-3">
-          <span class="text-dark">Chưa có tài khoản?</span>
-          <a href="#" class="fw-bold" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#registerModal">
-            Đăng ký ngay
-          </a>
+            </div>
         </div>
-      </div>
-
     </div>
-  </div>
-</div>
+    <script>
+        const registerForm = document.querySelector('#registerModal form');
+        registerForm.addEventListener('submit', function (e) {
+            e.preventDefault();
 
-<!-- MODAL ĐĂNG KÝ -->
-<div class="modal fade" id="registerModal" tabindex="-1">
-  <div class="modal-dialog modal-dialog-centered modal-md">
-    <div class="modal-content rounded-4 shadow-lg bg-light">
+            const fullName = this.querySelector('input[placeholder="Nhập họ tên"]').value;
+            const email = this.querySelector('#email').value;
+            const password = this.querySelector('#password').value;
 
-      <div class="modal-header border-0">
-        <h3 class="modal-title fw-bold text-dark">Đăng ký</h3>
-        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-      </div>
+            const users = JSON.parse(localStorage.getItem('users')) || [];
 
-      <div class="modal-body px-4">
-        <form>
-          <div class="mb-3">
-            <label class="form-label fw-semibold text-dark">Email</label>
-            <input type="email" class="form-control form-control-lg" placeholder="Nhập email">
-          </div>
-          <div class="mb-3">
-            <label class="form-label fw-semibold text-dark">Username</label>
-            <input type="username" class="form-control form-control-lg" placeholder="Nhập tên người dùng">
-          </div>
+            const isExisted = users.find(user => user.email === email);
+            if (isExisted) {
+                alert("Email này đã được đăng ký!");
+                return;
+            }
 
-          <div class="mb-4">
-            <label class="form-label fw-semibold text-dark">Mật khẩu</label>
-            <input type="password" class="form-control form-control-lg" placeholder="Nhập mật khẩu">
-          </div>
+            users.push({ fullName, email, password });
+            localStorage.setItem('users', JSON.stringify(users));
 
-          <button type="submit" class="btn btn-success btn-lg w-100 rounded-3 mb-2">
-            Đăng ký
-          </button>
-        </form>
+            alert("Đăng ký thành công! Hãy đăng nhập.");
 
-        <div class="text-center mt-3">
-          <span class="text-dark">Đã có tài khoản?</span>
-          <a href="#" data-bs-target="#loginModal" data-bs-toggle="modal" class="fw-bold">
-            Đăng nhập
-          </a>
-        </div>
-      </div>
+            const registerModal = bootstrap.Modal.getInstance(document.getElementById('registerModal'));
+            registerModal.hide();
+            const loginModal = new bootstrap.Modal(document.getElementById('loginModal'));
+            loginModal.show();
+        });
+    </script>
 
-    </div>
-  </div>
-</div>
 
     <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-inner">
             <div class="carousel-item active container-fluid">
                 <img class="testimonial-image"
-                    src="https://api.xedap.vn/banners/CTKM%20T10/resize-website-banner-home.jpg">
+                    src="https://xedapgiakho.com/wp-content/uploads/2024/11/banner-xe-dap-dia-hinh.jpg">
             </div>
             <div class="carousel-item container-fluid">
                 <img class="testimonial-image"
-                    src="https://api.xedap.vn/banners/CTKM%20T10/resize-ctkm-thang-10-banner-web.jpg">
+                    src="https://xedapgiakho.com/wp-content/uploads/2024/11/banner-xe-dap-tre-em.jpg">
             </div>
             <div class="carousel-item container-fluid">
                 <img class="testimonial-image"
-                    src="https://api.xedap.vn/banners/CTKM%20T09/banner-cover-rincon-banner.jpg">
+                    src="https://xedapgiakho.com/wp-content/uploads/2024/11/Banner-xe-dap-touring.jpg">
             </div>
 
         </div>
@@ -231,17 +267,22 @@
         integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
         crossorigin="anonymous"></script>
     <!-- Banner -->
-    <div class="hot-vai">
+    <div class="hot-vai mt-3">
         <section class="text-center py-5">
-            <h1 class="fw-bold display-5">SIÊU SALE CUỐI NĂM</h1>
-            <p class="lead">DEAL ĐỈNH QUÀ XỊN</p>
+            <h1 class="fw-bold display-5">SIÊU SALE THÁNG 3</h1>
+            <div class="countdown-box" id="countdown">
+                <div class="countdown-unit"><span id="days">00</span><label>Ngày</label></div>
+                <div class="countdown-unit"><span id="hours">00</span><label>Giờ</label></div>
+                <div class="countdown-unit"><span id="minutes">00</span><label>Phút</label></div>
+                <div class="countdown-unit"><span id="seconds">00</span><label>Giây</label></div>
+            </div>
         </section>
         <!-- Deal hot -->
         <div class="container my-4">
             <div class="text-center mb-3">
                 <button class="btn btn-danger btn-lg fw-bold px-5 mt-auto">DEAL HOT HÔM NAY</button>
             </div>
-            <div id="productCarouselHot" class="carousel slide mb-5" data-bs-ride="carousel">
+            <div id="productCarouselHot" class="hot-vai-khung carousel slide mb-5" data-bs-ride="carousel">
                 <div class="carousel-inner">
 
                     <div class="carousel-item active">
@@ -249,10 +290,8 @@
                             <!--Col<576 Col-sm>=576 col-md>=768 lg>-992-->
                             <div class="col-12 col-sm-6 col-md-4 col-lg-2">
                                 <div class="card h-100">
-                                    <a href="sp1.html">
-                                        <img src="https://api.xedap.vn/wp-content/uploads/2021/12/rincon-2-27-5-black-850-f.jpg"
-                                            class="card-img-top" alt="Xe 1">
-                                    </a>
+                                    <img src="https://api.xedap.vn/wp-content/uploads/2021/12/rincon-2-27-5-black-850-f.jpg"
+                                        class="card-img-top" alt="Xe 1">
                                     <div class="card-body">
                                         <h6 class="card-title">Xe Đạp Địa Hình Rincon 2- 29- Phanh Đĩa ...</h6>
                                         <p class="fw-bold text-danger">7.190.000 VND GIẢM TỚI 35% </p>
@@ -332,9 +371,9 @@
             </div>
         </div>
     </div>
-        <!--Ban chay-->
+    <!--Ban chay-->
     <div class="container my-4">
-        <div class="hot-vai">
+        <div class="hoti-vai ">
             <section class="text-center py-5">
                 <h1 class="fw-bold display-5">TOP SẢN PHẨM BÁN CHẠY</h1>
                 <p class="lead">MIỄN PHÍ VẬN CHUYỂN TOÀN QUỐC</p>
@@ -342,90 +381,88 @@
         </div>
         <!-- Carousel sản phẩm -->
         <div id="productCarouselSell" class="carousel slide mb-5" data-bs-ride="carousel">
-        <div class="carousel-inner">
+            <div class="carousel-inner">
 
-            <div class="carousel-item active">
-                <div class="row text-center">
-                    <div class="col-12 col-sm-6 col-md-4 col-lg-2">
-                        <div class="card h-100">
-                            <a href="sp2.html">
+                <div class="carousel-item active">
+                    <div class="row text-center">
+                        <div class="col-12 col-sm-6 col-md-4 col-lg-2">
+                            <div class="card h-100">
                                 <img src="https://api.xedap.vn/products/RAPTOR/marlin-2-greenblue_2.jpg"
                                     class="card-img-top" alt="Xe 1">
-                            </a>
-                            <div class="card-body">
-                                <h6 class="card-title">Xe Đạp Đua Địa Hình MTB RAPTOR Marlin 2- Phanh đĩa....</h6>
-                                <p class="fw-bold text-danger">9.890.000 VND</p>
+                                <div class="card-body">
+                                    <h6 class="card-title">Xe Đạp Đua Địa Hình MTB RAPTOR Marlin 2- Phanh đĩa....</h6>
+                                    <p class="fw-bold text-danger">9.890.000 VND</p>
+                                </div>
                             </div>
                         </div>
-                    </div>
 
-                    <div class="col-12 col-sm-6 col-md-4 col-lg-2">
-                        <div class="card h-100">
-                            <img src="https://api.xedap.vn/products/RAPTOR/evo-orange.jpg" class="card-img-top"
-                                alt="Xe 2">
-                            <div class="card-body">
-                                <h6 class="card-title">Xe Đạp Đua Địa Hình MTB RAPTOR Evo - Phanh đĩa, Bá...</h6>
-                                <p class="fw-bold text-danger">9.790.000 VND</p>
+                        <div class="col-12 col-sm-6 col-md-4 col-lg-2">
+                            <div class="card h-100">
+                                <img src="https://api.xedap.vn/products/RAPTOR/evo-orange.jpg" class="card-img-top"
+                                    alt="Xe 2">
+                                <div class="card-body">
+                                    <h6 class="card-title">Xe Đạp Đua Địa Hình MTB RAPTOR Evo - Phanh đĩa, Bá...</h6>
+                                    <p class="fw-bold text-danger">9.790.000 VND</p>
+                                </div>
                             </div>
                         </div>
-                    </div>
 
-                    <div class="col-12 col-sm-6 col-md-4 col-lg-2">
-                        <div class="card h-100">
-                            <img src="https://api.xedap.vn/wp-content/uploads/2023/07/MaxBike_Mikki12_Blue_0.jpg"
-                                class="card-img-top" alt="Xe 3">
-                            <div class="card-body">
-                                <h6 class="card-title">Xe Đạp Trẻ Em Youth MAX BIKE Mikki 12- Bánh 12 Inches...</h6>
-                                <p class="fw-bold text-danger">1.190.000 VND </p>
-                                <p><del>1.990.000 VND</del></p>
+                        <div class="col-12 col-sm-6 col-md-4 col-lg-2">
+                            <div class="card h-100">
+                                <img src="https://api.xedap.vn/wp-content/uploads/2023/07/MaxBike_Mikki12_Blue_0.jpg"
+                                    class="card-img-top" alt="Xe 3">
+                                <div class="card-body">
+                                    <h6 class="card-title">Xe Đạp Trẻ Em Youth MAX BIKE Mikki 12- Bánh 12 Inches...</h6>
+                                    <p class="fw-bold text-danger">1.190.000 VND </p>
+                                    <p><del>1.990.000 VND</del></p>
+                                </div>
                             </div>
                         </div>
-                    </div>
 
-                    <div class="col-12 col-sm-6 col-md-4 col-lg-2">
-                        <div class="card h-100">
-                            <img src="https://api.xedap.vn/wp-content/uploads/2024/01/Free22_WhiteGray.jpg"
-                                class="card-img-top" alt="Xe 4">
-                            <div class="card-body">
-                                <h6 class="card-title">Xe Đạp Đường phố Touring TRINX Free 2.2- Phanh...
-                                </h6>
-                                <p class="fw-bold text-danger">6.490.000 VND </p>
-                                <p><del>7.490.000 VND</del></p>
+                        <div class="col-12 col-sm-6 col-md-4 col-lg-2">
+                            <div class="card h-100">
+                                <img src="https://api.xedap.vn/wp-content/uploads/2024/01/Free22_WhiteGray.jpg"
+                                    class="card-img-top" alt="Xe 4">
+                                <div class="card-body">
+                                    <h6 class="card-title">Xe Đạp Đường phố Touring TRINX Free 2.2- Phanh...
+                                    </h6>
+                                    <p class="fw-bold text-danger">6.490.000 VND </p>
+                                    <p><del>7.490.000 VND</del></p>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-12 col-sm-6 col-md-4 col-lg-2">
-                        <div class="card h-100">
-                            <img src="https://api.xedap.vn/wp-content/uploads/2021/07/VINLAV2-7031-850.jpg"
-                                class="card-img-top" alt="Xe 4">
-                            <div class="card-body">
-                                <h6 class="card-title">Xe Đạp Đua Địa Hình MTB Vinbike Lava 2- Phanh Đĩa,...</h6>
-                                <p class="fw-bold text-danger">4.490.000 VND </p>
-                                <p><del>6.990.000 VND</del></p>
+                        <div class="col-12 col-sm-6 col-md-4 col-lg-2">
+                            <div class="card h-100">
+                                <img src="https://api.xedap.vn/wp-content/uploads/2021/07/VINLAV2-7031-850.jpg"
+                                    class="card-img-top" alt="Xe 4">
+                                <div class="card-body">
+                                    <h6 class="card-title">Xe Đạp Đua Địa Hình MTB Vinbike Lava 2- Phanh Đĩa,...</h6>
+                                    <p class="fw-bold text-danger">4.490.000 VND </p>
+                                    <p><del>6.990.000 VND</del></p>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-12 col-sm-6 col-md-4 col-lg-2">
-                        <div class="card h-100">
-                            <img src="https://api.xedap.vn/wp-content/uploads/2023/09/Delta_Black-1.jpg"
-                                class="card-img-top" alt="Xe 4">
-                            <div class="card-body">
-                                <h6 class="card-title">Xe Đạp Đường Phố Touring GTIX Delta - Phanh Địa,...</h6>
-                                <p class="fw-bold text-danger">11.790.000 VND </p>
-                                <p><del>12.490.000 VND</del></p>
+                        <div class="col-12 col-sm-6 col-md-4 col-lg-2">
+                            <div class="card h-100">
+                                <img src="https://api.xedap.vn/wp-content/uploads/2023/09/Delta_Black-1.jpg"
+                                    class="card-img-top" alt="Xe 4">
+                                <div class="card-body">
+                                    <h6 class="card-title">Xe Đạp Đường Phố Touring GTIX Delta - Phanh Địa,...</h6>
+                                    <p class="fw-bold text-danger">11.790.000 VND </p>
+                                    <p><del>12.490.000 VND</del></p>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    <button class="carousel-control-prev" type="button" data-bs-target="#productCarouselSell" data-bs-slide="prev">
-        <span class="carousel-control-prev-icon"></span>
-    </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#productCarouselSell" data-bs-slide="next">
-        <span class="carousel-control-next-icon"></span>
-    </button>
+        <button class="carousel-control-prev" type="button" data-bs-target="#productCarouselSell" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon"></span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#productCarouselSell" data-bs-slide="next">
+            <span class="carousel-control-next-icon"></span>
+        </button>
     </div>
     </div>
     <!-- XE ĐẠP TRẺ EM -->
@@ -435,10 +472,8 @@
 
             <div class="col-md-4">
                 <div class="card h-100 shadow">
-                    <a href="sp3.html">
-                        <img src="https://api.xedap.vn/wp-content/uploads/2023/08/xe-dap-tre-em-youth-max-bike-homepage.png"
-                            class="card-img-top" alt="Xe xịn nhất">
-                    </a>
+                    <img src="https://api.xedap.vn/wp-content/uploads/2023/08/xe-dap-tre-em-youth-max-bike-homepage.png"
+                        class="card-img-top" alt="Xe xịn nhất">
                     <div class="card-body">
                         <h5 class="card-title">Xe Đạp Trẻ Em Youth MAX BIKE Mikki 14 - Bánh 14 Inches</h5>
                         <p class="fw-bold text-danger text-center">2.190.000 VND</p>
@@ -760,7 +795,7 @@
         </div>
     </div>
     <!-- Phụ Kiện cho xe-->
-    <div class="container my-4 mb-5"id= "phu-kien">
+    <div class="container my-4 mb-5" id="phu-kien">
         <div class="row">
             <p class="fw-bold display-5 mb-4 mt-5">PHỤ KIỆN CHO XE</p>
 
@@ -938,6 +973,7 @@
 
         </div>
     </div>
+    <div id="map" style="height: 400px; width: 100%; border-radius: 10px;"></div>
     <footer class="bg-dark text-white pt-4 pb-2 mt-5">
         <div class="container">
             <div class="row">
@@ -976,8 +1012,246 @@
             </div>
         </div>
     </footer>
+    <script>
+        function initMap() {
+            // Vị trí cửa hàng chính (Ví dụ ở TP.HCM)
+            const storeLocation = { lat: 10.8231, lng: 106.6297 };
 
+            // Khởi tạo bản đồ
+            const map = new google.maps.Map(document.getElementById("map"), {
+                zoom: 15,
+                center: storeLocation,
+            });
 
+            // Thêm một điểm đánh dấu (Marker)
+            const marker = new google.maps.Marker({
+                position: storeLocation,
+                map: map,
+                title: "XeDap.vn - Chi nhánh Hóc Môn"
+            });
+        }
+        // Hàm cập nhật giao diện khi đã đăng nhập
+        function updateUI() {
+            const currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
+            const userDisplayName = document.getElementById('userDisplayName');
+            const userDropdown = document.getElementById('userDropdown');
+            const userDropdownMenu = document.getElementById('userDropdownMenu');
+
+            if (currentUser) {
+
+                // 2. Thay thế icon mặc định bằng một ảnh đại diện (logo)
+                // Bạn có thể dùng ảnh mặc định hoặc lấy từ dữ liệu user nếu có
+                userDropdown.innerHTML = `
+            <img src="data:image/png;base64,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" 
+                 alt="avatar" class="rounded-circle" width="30" height="30">
+            <span>${currentUser.fullName}</span>
+        `;
+
+                userDropdownMenu.innerHTML = `
+            <li><a class="dropdown-item" href="#">Trang cá nhân</a></li>
+            <li><a class="dropdown-item" href="#">Đơn hàng của tôi</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="#" id="logoutBtn">Đăng xuất</a></li>
+        `;
+
+                document.getElementById('logoutBtn').addEventListener('click', function () {
+                    sessionStorage.removeItem('currentUser');
+                    sessionStorage.removeItem('isLoggedIn');
+                    alert("Đã đăng xuất!");
+                    location.reload();
+                });
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            updateUI();
+        });
+        // 1. Hiệu ứng đổi màu Navbar khi cuộn trang
+        window.addEventListener('scroll', function () {
+            const navbar = document.getElementById('mainNavbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('navbar-scrolled');
+            } else {
+                navbar.classList.remove('navbar-scrolled');
+            }
+        });
+
+        // 2. Hiệu ứng Reveal - Hiện dần sản phẩm khi cuộn chuột đến
+        function reveal() {
+            var reveals = document.querySelectorAll(".card, .display-5, .hot-vai");
+            for (var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                var elementVisible = 100;
+                if (elementTop < windowHeight - elementVisible) {
+                    reveals[i].classList.add("active");
+                }
+            }
+        }
+        // Gán class 'reveal' cho các phần tử muốn hiệu ứng
+        document.querySelectorAll('.card, .display-5').forEach(el => el.classList.add('reveal'));
+        window.addEventListener("scroll", reveal);
+
+        // 3. Xử lý Giỏ hàng cơ bản
+        let count = 0;
+        const cartBadge = document.getElementById('cartBadge');
+
+        // 4. Smooth Scroll cho các link nội bộ (#)
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    window.scrollTo({
+                        top: target.offsetTop - 70, // Trừ đi chiều cao của navbar
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        // --- 1. Tạo Nút Back to Top ---
+        const backToTopBtn = document.createElement('div');
+        backToTopBtn.id = 'backToTop';
+        backToTopBtn.innerHTML = '<i class="fa-solid fa-arrow-up"></i>';
+        document.body.appendChild(backToTopBtn);
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 400) {
+                backToTopBtn.classList.add('show');
+            } else {
+                backToTopBtn.classList.remove('show');
+            }
+        });
+
+        backToTopBtn.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // Lấy tất cả các nút có khả năng là nút mua hàng dựa trên nội dung
+        const allButtons = document.querySelectorAll('.card .btn .buy-btn');
+
+        allButtons.forEach(btn => {
+            btn.addEventListener('click', function (e) {
+                e.preventDefault();
+
+                //hiệu ứng rung nhẹ cho icon giỏ hàng
+                const cartIcon = document.querySelector('.fa-cart-shopping');
+
+                cartIcon.classList.add('fa-bounce');
+                setTimeout(() => cartIcon.classList.remove('fa-bounce'), 800);
+
+                //ccập nhật số lượng giỏ hàng
+                const badge = document.getElementById('cartBadge');
+                let currentNum = parseInt(badge.innerText);
+                badge.innerText = currentNum + 1;
+
+                // Hiển thị thông báo đẹp
+                showToast();
+            });
+        });
+
+        // --- 4. Tự động đóng Navbar trên Mobile sau khi click link ---
+        const navLinks = document.querySelectorAll('.nav-link');
+        const menuToggle = document.getElementById('navbarTop');
+        const bsCollapse = new bootstrap.Collapse(menuToggle, { toggle: false });
+
+        navLinks.forEach((l) => {
+            l.addEventListener('click', () => {
+                if (window.innerWidth < 992) { bsCollapse.hide(); }
+            });
+        });
+        // --- 1. Live Search: Tìm xe đạp ngay khi gõ ---
+        const products = [];
+        // Tự động thu thập dữ liệu từ các thẻ card có sẵn trong HTML
+        document.querySelectorAll('.card').forEach(card => {
+            const title = card.querySelector('.card-title')?.innerText;
+            const img = card.querySelector('img')?.src;
+            const price = card.querySelector('.text-danger')?.innerText;
+            if (title) products.push({ title, img, price });
+        });
+
+        // Tạo ô input tìm kiếm động (nếu chưa có trong navbar)
+        const searchWrapper = document.querySelector('.navbar .container');
+        const searchUI = document.createElement('div');
+        searchUI.className = 'position-relative ms-lg-3 d-none d-lg-block';
+        searchUI.innerHTML = `
+        <input type="text" id="liveSearch" class="form-control rounded-pill" placeholder="Tìm xe nhanh...">
+        <div id="search-results-container"></div>
+    `;
+        searchWrapper.insertBefore(searchUI, searchWrapper.querySelector('.navbar-toggler'));
+
+        const searchInput = document.getElementById('liveSearch');
+        const resultsContainer = document.getElementById('search-results-container');
+
+        searchInput.addEventListener('input', (e) => {
+            const term = e.target.value.toLowerCase();
+            resultsContainer.innerHTML = '';
+            if (term.length < 2) { resultsContainer.style.display = 'none'; return; }
+
+            const filtered = products.filter(p => p.title.toLowerCase().includes(term));
+            if (filtered.length > 0) {
+                filtered.forEach(p => {
+                    resultsContainer.innerHTML += `
+                    <a href="#" class="search-item">
+                        <img src="${p.img}">
+                        <div>
+                            <div class="fw-bold" style="font-size:0.9rem">${p.title}</div>
+                            <div class="text-danger small">${p.price}</div>
+                        </div>
+                    </a>`;
+                });
+                resultsContainer.style.display = 'block';
+            }
+        });
+
+        function updateCountdown() {
+            const targetDate = new Date("Apr 30, 2026 00:00:00").getTime();
+            const now = new Date().getTime();
+            const diff = targetDate - now;
+
+            const d = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const h = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const s = Math.floor((diff % (1000 * 60)) / 1000);
+
+            document.getElementById('days').innerText = d < 10 ? '0' + d : d;
+            document.getElementById('hours').innerText = h < 10 ? '0' + h : h;
+            document.getElementById('minutes').innerText = m < 10 ? '0' + m : m;
+            document.getElementById('seconds').innerText = s < 10 ? '0' + s : s;
+        }
+        setInterval(updateCountdown, 1000);
+
+    </script>
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="cartOffcanvas">
+        <div class="offcanvas-header bg-dark text-white">
+            <h5 class="offcanvas-title">GIỎ HÀNG CỦA BẠN</h5>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"></button>
+        </div>
+        <div class="offcanvas-body">
+            <div id="cart-items-list">
+                <p class="text-center text-muted mt-5">Chưa có sản phẩm nào.</p>
+            </div>
+            <hr>
+            <div class="d-flex justify-content-between fw-bold fs-5">
+                <span>Tổng cộng:</span>
+                <span id="cart-total-price" class="text-danger">0 VND</span>
+            </div>
+            <button id="thanhtoan" class="btn btn-primary w-100 mt-3 btn-lg rounded-pill">THANH TOÁN NGAY</button>
+            <script>
+                document.getElementById('thanhtoan').addEventListener('click', function () {
+                    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+                    if (cart.length === 0) {
+                        alert("Giỏ hàng của bạn đang trống!");
+                    } else {
+                        window.location.href = "thanhtoan.html";
+                    }
+                });
+            </script>
+        </div>
+    </div>
+    <script src="script.js"></script>
 </body>
+
 
 </html>

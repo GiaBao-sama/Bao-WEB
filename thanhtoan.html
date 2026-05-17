@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-storage-compat.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Website title -->
+    <title>XeDap.vn - Web bán xe đạp uy tín số 1 Việt Nam.</title>
+
+    <!-- Google Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&family=Sedgwick+Ave&family=Ubuntu:wght@700&display=swap"
+        rel="stylesheet">
+
+    <!-- My stylesheet -->
+    <link rel="stylesheet" href="styles.css">
+
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Font Awesome (icons) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <!-- Stripe JS -->
+    <script src="https://js.stripe.com/v3/"></script>
+
+</head>
+
+<body>
+
+    <div class="bg-warning text-dark py-1 overflow-hidden">
+        <marquee behavior="scroll" direction="left" class="fw-bold">
+            Mien phi giao hang-Sua chua tai nha | Bao hanh 5 nam- Doi tra trong 30 ngay | Giam gia den 50% cac phu kien
+            | Hotline: 1900 633 999 | Email: info@xeadap.vn | Fanpage: fb.com/xedap.vn
+        </marquee>
+    </div>
+    <!-- START: Updated Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top py-2" id="mainNavbar">
+        <div class="container">
+            <!-- Brand / Logo -->
+            <a class="navbar-brand d-flex align-items-center gap-2" href="index.html">
+                <img src="data:image/png;base64,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"
+                    alt="Logo XeDap.vn" height="34" style="filter: drop-shadow(0 1px 2px rgba(0,0,0,.4));">
+                <span class="fw-bold ms-1">XeDap.vn</span>
+            </a>
+
+            <!-- Toggler -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTop"
+                aria-controls="navbarTop" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <!-- Collapsible content -->
+            <div class="collapse navbar-collapse" id="navbarTop">
+                <!-- Left links -->
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0 align-items-lg-center">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="index.html">Trang chủ</a>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="#xe-dap-tre-em">Xe đạp trẻ em</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#xe-dap-dia-hinh">Xe đạp địa hình</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#xe-dap-duong-pho">Xe đạp đường phố</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#xe-dap-nu">Xe đạp nữ</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#phu-kien">Phụ kiện</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#lien-he">Liên hệ</a></li>
+                </ul>
+
+                <!-- Right icons -->
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-center">
+                    <!-- Search icon for small screens -->
+                    <li class="nav-item d-lg-none me-2">
+                        <a class="nav-link" href="#" id="mobileSearchToggle"><i
+                                class="fa-solid fa-magnifying-glass"></i></a>
+                    </li>
+                    <li class="nav-item dropdown me-2" id="userAccountSection">
+                        <a class="nav-link dropdown-toggle d-flex align-items-center gap-2" href="#" id="userDropdown"
+                            role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fa-solid fa-user"></i>
+                            <span id="userDisplayName">Tài khoản</span>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown"
+                            id="userDropdownMenu">
+                            <li><a class="dropdown-item" href="#" data-bs-toggle="modal"
+                                    data-bs-target="#loginModal">Đăng nhập</a></li>
+                            <li><a class="dropdown-item" href="#" data-bs-toggle="modal"
+                                    data-bs-target="#registerModal">Đăng ký</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" href="#">Đơn hàng</a></li>
+                        </ul>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+
+    </nav>
+    <!-- END: Updated Navbar -->
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-md-7">
+                <h4 class="mb-4">Thông tin thanh toán</h4>
+
+                <form>
+                    <!-- Họ và tên -->
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label for="fullName" class="form-label">Họ và tên <span
+                                    class="text-danger">(*)</span></label>
+                            <input type="text" class="form-control" id="fullName" placeholder="Nhập họ tên" required>
+                        </div>
+                        <!-- Số điện thoại -->
+                        <div class="col-md-6">
+                            <label for="phone" class="form-label">Số điện thoại <span
+                                    class="text-danger">(*)</span></label>
+                            <input type="tel" class="form-control" id="phone" placeholder="Nhập số điện thoại" required>
+                        </div>
+                    </div>
+
+                    <!-- Thành phố/tỉnh -->
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label for="province" class="form-label">Thành phố/tỉnh <span
+                                    class="text-danger">(*)</span></label>
+                            <select class="form-select" id="province" required>
+                                <option selected disabled>Chọn tỉnh/thành phố</option>
+                                <option value="ha-noi">Hà Nội</option>
+                                <option value="ho-chi-minh">Hồ Chí Minh</option>
+                                <option value="da-nang">Đà Nẵng</option>
+                                <option value="hai-phong">Hải Phòng</option>
+                                <option value="can-tho">Cần Thơ</option>
+                            </select>
+                        </div>
+                        <!-- Quận/huyện -->
+                        <div class="col-md-6">
+                            <label for="district" class="form-label">Quận/huyện <span
+                                    class="text-danger">(*)</span></label>
+                            <select class="form-select" id="district" required>
+                                <option selected disabled>Chọn quận/huyện</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Phường/xã -->
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label for="ward" class="form-label">Phường/xã <span class="text-danger">(*)</span></label>
+                            <select class="form-select" id="ward" required>
+                                <option selected disabled>Chọn phường/xã</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Địa chỉ -->
+                    <div class="row mb-3">
+                        <div class="col-md-12">
+                            <label for="address" class="form-label">Địa chỉ <span class="text-danger">(*)</span></label>
+                            <textarea class="form-control" id="address" rows="3" placeholder="Nhập địa chỉ"
+                                required></textarea>
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+
+
+
+            <div class="col-md-5">
+                <div class="card shadow-sm">
+                    <div class="card-header bg-dark text-white">
+                        <h5 class="mb-0">ĐƠN HÀNG CỦA BẠN</h5>
+                    </div>
+                    <div class="card-body">
+                        <div id="checkout-cart-items">
+                            <p class="text-center text-muted">Đang tải giỏ hàng...</p>
+                        </div>
+                        <hr>
+                        <div class="d-flex justify-content-between fw-bold fs-5">
+                            <span>Tổng cộng:</span>
+                            <span id="checkout-total" class="text-danger">0đ</span>
+                        </div>
+                        <button class="btn btn-success w-100 mt-3 btn-lg" id="confirmOrderBtn">XÁC NHẬN ĐẶT
+                            HÀNG</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer class="bg-dark text-white pt-4 pb-2 mt-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-3">
+                    <h5>XeDap.vn</h5>
+                    <p>Website bán xe đạp uy tín số 1 Việt Nam. Chuyên cung cấp xe đạp địa hình, xe đạp trẻ em, xe
+                        touring, và phụ kiện.</p>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <h5>Liên kết nhanh</h5>
+                    <ul>
+                        <li><a href="#cuahang" class="text-white text-decoration-none">Cửa hàng</a></li>
+                        <li><a href="#" class="text-white text-decoration-none">Giỏ hàng</a></li>
+                        <li><a href="dangnhap.html" class="text-white text-decoration-none">Đăng nhập</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <h5>Liên hệ</h5>
+                    <p><i class="fa-solid fa-location-dot"></i> 123 Nguyễn Văn Cừ, Quận 5, TP.HCM</p>
+                    <p><i class="fa-solid fa-phone"></i> 0909 123 456</p>
+                    <p><i class="fa-solid fa-envelope"></i> support@xedap.vn</p>
+                    <div>
+                        <a href="https://www.facebook.com/photo?fbid=122279715356026808&set=a.122110035056026808&locale=vi_VN"
+                            class="text-white me-3"><i class="fa-brands fa-facebook"></i></a>
+                        <a href="#" class="text-white me-3"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="https://www.youtube.com/watch?v=BoKQ6991WL8" class="text-white"><i
+                                class="fa-brands fa-youtube"></i></a>
+                    </div>
+                </div>
+
+            </div>
+
+            <hr class="border-light">
+            <div class="text-center">
+                <p class="mb-0">&copy; 2025 XeDap.vn. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+    <script src="FIREBASE-CONFIG.js"></script>
+    <script src="script.js"></script>
+
+
+    <script>
+        // Khởi tạo Stripe (thay YOUR_PUBLISHABLE_KEY bằng key thật từ Stripe dashboard)
+        const stripe = Stripe('pk_test_51TSoxqFo6ABzcR1s1iTigBqoj0dQ9lTEsTZbdcH215eymJuYtHxOLQBFpxuHWAxYsoTKFwewnRq3ZQ1cFJNJ1VhO00UaNWPYHx'); // Publishable key đã cập nhật
+
+        // Dữ liệu tỉnh/quận/phường
+        const locationData = {
+            'ha-noi': {
+                name: 'Hà Nội',
+                districts: {
+                    'ba-dinh': { name: 'Ba Đình', wards: ['Wards 1', 'Wards 2', 'Wards 3'] },
+                    'hoan-kiem': { name: 'Hoàn Kiếm', wards: ['Wards 1', 'Wards 2'] },
+                    'hai-ba-trung': { name: 'Hai Bà Trưng', wards: ['Wards 1', 'Wards 2', 'Wards 3'] }
+                }
+            },
+            'ho-chi-minh': {
+                name: 'Hồ Chí Minh',
+                districts: {
+                    'district-1': { name: 'Quận 1', wards: ['Bến Nghé', 'Bến Thành'] },
+                    'district-3': { name: 'Quận 3', wards: ['Võ Thị Sáu', 'Nguyễn Hữu Canh'] }
+                }
+            },
+            'da-nang': {
+                name: 'Đà Nẵng',
+                districts: {
+                    'hai-chau': { name: 'Hải Châu', wards: ['Thạch Thang', 'Thanh Khê'] }
+                }
+            }
+        };
+
+        // Xử lý thay đổi tỉnh
+        document.getElementById('province').addEventListener('change', function () {
+            const provinceId = this.value;
+            const districtSelect = document.getElementById('district');
+            const wardSelect = document.getElementById('ward');
+
+            // Reset quận và phường
+            districtSelect.innerHTML = '<option selected disabled>Chọn quận/huyện</option>';
+            wardSelect.innerHTML = '<option selected disabled>Chọn phường/xã</option>';
+
+            if (locationData[provinceId]) {
+                const districts = locationData[provinceId].districts;
+                for (const [key, value] of Object.entries(districts)) {
+                    const option = document.createElement('option');
+                    option.value = key;
+                    option.textContent = value.name;
+                    districtSelect.appendChild(option);
+                }
+            }
+        });
+
+        // Xử lý thay đổi quận
+        document.getElementById('district').addEventListener('change', function () {
+            const provinceId = document.getElementById('province').value;
+            const districtId = this.value;
+            const wardSelect = document.getElementById('ward');
+
+            wardSelect.innerHTML = '<option selected disabled>Chọn phường/xã</option>';
+
+            if (locationData[provinceId] && locationData[provinceId].districts[districtId]) {
+                const wards = locationData[provinceId].districts[districtId].wards;
+                wards.forEach(ward => {
+                    const option = document.createElement('option');
+                    option.value = ward;
+                    option.textContent = ward;
+                    wardSelect.appendChild(option);
+                });
+            }
+        });
+
+        let cartItems = [];
+
+        function loadCheckoutCart() {
+            // Lấy dữ liệu từ localStorage và hiển thị lên phần checkout
+            cartItems = JSON.parse(localStorage.getItem('cart')) || [];
+            const container = document.getElementById('checkout-cart-items');
+            const totalElem = document.getElementById('checkout-total');
+
+            if (cartItems.length === 0) {
+                container.innerHTML = '<p class="text-center text-muted">Giỏ hàng trống.</p>';
+                return;
+            }
+
+            let html = '';
+
+            cartItems.forEach((item, index) => {
+                // Chuyển đổi price từ string sang number và nhân với số lượng
+                const unitPrice = parseInt(item.price.replace(/\D/g, '')) || 0;
+                const quantity = item.quantity || 1;
+                const linePrice = unitPrice * quantity;
+                html += `
+            <div class="d-flex align-items-center mb-3 p-2 border rounded">
+                <input type="checkbox" class="form-check-input me-2 item-checkbox" data-index="${index}" data-price="${linePrice}">
+                <img src="${item.img}" style="width: 50px; height: 50px; object-fit: cover;" class="rounded me-3">
+                <div class="flex-grow-1">
+                    <h6 class="mb-0 small fw-bold">${item.title}</h6>
+                    <small class="text-muted">Số lượng: ${quantity}</small>
+                </div>
+                <span class="fw-bold small">${linePrice.toLocaleString('vi-VN')}đ</span>
+            </div>
+        `;
+            });
+
+            container.innerHTML = html;
+
+            // Thêm event listener cho checkboxes
+            document.querySelectorAll('.item-checkbox').forEach(checkbox => {
+                checkbox.addEventListener('change', calculateTotal);
+            });
+
+            // Tính tổng ban đầu
+            calculateTotal();
+        }
+
+        // Hàm tính tổng tiền dựa trên checkbox đã check
+        function calculateTotal() {
+            const checkboxes = document.querySelectorAll('.item-checkbox:checked');
+            let total = 0;
+
+            checkboxes.forEach(checkbox => {
+                total += parseInt(checkbox.getAttribute('data-price'));
+            });
+
+            const totalElem = document.getElementById('checkout-total');
+            totalElem.innerText = total.toLocaleString('vi-VN') + 'đ';
+        }
+
+        // Chạy hàm ngay khi trang được tải
+        document.addEventListener('DOMContentLoaded', function () {
+            loadCheckoutCart();
+            // Cập nhật badge giỏ hàng
+            const cartCheckout = JSON.parse(localStorage.getItem('cart')) || [];
+            const badge = document.getElementById('cartBadge');
+            if (badge) {
+                const quantity = cartCheckout.reduce((sum, item) => sum + (item.quantity || 1), 0);
+                badge.innerText = quantity;
+            }
+
+            // Xử lý đặt hàng
+            document.getElementById('confirmOrderBtn').addEventListener('click', function () {
+                // Kiểm tra xem tài khoản đã đăng nhập chưa
+                firebase.auth().onAuthStateChanged(function (user) {
+                    if (!user) {
+                        alert('Vui lòng đăng nhập trước khi thanh toán!');
+                        window.location.href = 'index.html';
+                        return;
+                    }
+
+                    // Kiểm tra form đã điền đầy đủ
+                    const fullName = document.getElementById('fullName').value.trim();
+                    const phone = document.getElementById('phone').value.trim();
+                    const province = document.getElementById('province').value;
+                    const district = document.getElementById('district').value;
+                    const ward = document.getElementById('ward').value;
+                    const address = document.getElementById('address').value.trim();
+
+                    if (!fullName || !phone || !province || !district || !ward || !address) {
+                        alert('Vui lòng điền đầy đủ thông tin!');
+                        return;
+                    }
+
+                    // Kiểm tra có sản phẩm nào được chọn không
+                    const selectedItems = document.querySelectorAll('.item-checkbox:checked');
+                    if (selectedItems.length === 0) {
+                        alert('Vui lòng chọn ít nhất một sản phẩm để đặt hàng!');
+                        return;
+                    }
+
+                    // Thu thập các sản phẩm đã chọn
+                    const selectedProducts = [];
+                    selectedItems.forEach(checkbox => {
+                        const index = parseInt(checkbox.getAttribute('data-index'));
+                        selectedProducts.push(cartItems[index]);
+                    });
+
+                    // Tạo đơn hàng (có thể lưu vào localStorage nếu cần)
+                    const order = {
+                        id: Date.now(),
+                        customer: {
+                            fullName,
+                            phone,
+                            province: locationData[province].name,
+                            district: locationData[province].districts[district].name,
+                            ward,
+                            address
+                        },
+                        products: selectedProducts,
+                        total: parseInt(document.getElementById('checkout-total').innerText.replace(/\D/g, '')),
+                        date: new Date().toLocaleString('vi-VN'),
+                        status: 'pending'
+                    };
+
+                    // Lưu đơn hàng vào localStorage (nếu muốn giữ lịch sử)
+                    const orders = JSON.parse(localStorage.getItem('orders')) || [];
+                    orders.push(order);
+                    localStorage.setItem('orders', JSON.stringify(orders));
+
+                    // Gọi API tạo checkout session (cần backend)
+                    // Giả lập: Thay bằng fetch đến server của bạn
+                    fetch('http://localhost:3000/create-checkout-session', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({
+                            orderId: order.id,
+                            amount: order.total,
+                            currency: 'vnd',
+                            products: selectedProducts.map(product => ({
+                                ...product,
+                                name: product.name || product.title,
+                            }))
+                        })
+                    })
+                    .then(async response => {
+                        const data = await response.json();
+                        if (!response.ok) {
+                            throw new Error(data.error || 'Lỗi máy chủ');
+                        }
+                        return data;
+                    })
+                    .then(session => {
+                        if (!session.id) {
+                            throw new Error('Stripe session không được tạo.');
+                        }
+                        return stripe.redirectToCheckout({ sessionId: session.id });
+                    })
+                    .then(result => {
+                        if (result && result.error) {
+                            alert(result.error.message);
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                        alert('Có lỗi xảy ra khi thanh toán: ' + error.message);
+                    });
+
+                    // Nếu không dùng Stripe, xóa sản phẩm và redirect
+                    // const remainingItems = cartItems.filter((item, index) => {
+                    //     return !document.querySelector(`.item-checkbox[data-index="${index}"]:checked`);
+                    // });
+                    // localStorage.setItem('cart', JSON.stringify(remainingItems));
+                    // alert('Đặt hàng thành công! Cảm ơn bạn đã mua hàng.');
+                    // window.location.href = 'index.html';
+                });
+            });
+        });
+    </script>
